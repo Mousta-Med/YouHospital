@@ -17,32 +17,32 @@ import java.util.Optional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-        @Autowired
-        private AdminRepository adminRepository;
+    @Autowired
+    private AdminRepository adminRepository;
 
-        @Autowired
-        private StaffRepository staffRepository;
+    @Autowired
+    private StaffRepository staffRepository;
 
-        @Autowired
-        private PatientRepository patientRepository;
+    @Autowired
+    private PatientRepository patientRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-                Optional<Admin> adminUser = adminRepository.findByEmail(username);
-                if (adminUser.isPresent()) {
-                        return adminRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
-                }
+        Optional<Admin> adminUser = adminRepository.findByEmail(username);
+        if (adminUser.isPresent()) {
+            return adminRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+        }
 
-                Optional<Staff> staffUser = staffRepository.findByEmail(username);
-                if (staffUser.isPresent()) {
-                        return staffRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
-                }
+        Optional<Staff> staffUser = staffRepository.findByEmail(username);
+        if (staffUser.isPresent()) {
+            return staffRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+        }
 
-                Optional<Patient> patientUser = patientRepository.findByEmail(username);
-                if (patientUser.isPresent()) {
-                        return patientRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
-                }
+        Optional<Patient> patientUser = patientRepository.findByEmail(username);
+        if (patientUser.isPresent()) {
+            return patientRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+        }
 
         throw new UsernameNotFoundException("User not found with username: " + username);
     }

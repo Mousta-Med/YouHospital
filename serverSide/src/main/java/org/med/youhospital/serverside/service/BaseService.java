@@ -1,21 +1,17 @@
 package org.med.youhospital.serverside.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 
-public interface BaseService<C, T, R> {
-    R save(C c);
+public interface BaseService<Request, Id, Response> {
 
-    List<R> findAll();
+    Response save(Request request);
 
-    R findOne(T id);
+    List<Response> findAll();
 
-    R update(T id, C c);
+    Response findOne(Id id);
 
-    void delete(T id);
+    Response update(Id id, Request request);
 
+    void delete(Id id);
 
-    Page<R> findWithPagination(Pageable pageable);
 }

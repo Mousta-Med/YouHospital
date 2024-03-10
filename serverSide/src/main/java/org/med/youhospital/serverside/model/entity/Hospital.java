@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Hospital extends Auditable{
+public class Hospital extends Auditable {
 
 
     private String name;

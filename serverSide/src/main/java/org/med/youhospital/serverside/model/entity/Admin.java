@@ -1,13 +1,14 @@
 package org.med.youhospital.serverside.model.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,10 +18,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class Admin extends Person implements UserDetails {
+public final class Admin extends Person {
 
 
-    @OneToMany(mappedBy = "admin",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
     private List<Staff> staffList;
 
     @Override

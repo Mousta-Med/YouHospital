@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.med.youhospital.serverside.model.enums.Gender;
 import org.med.youhospital.serverside.model.enums.IdentityType;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
 @MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Person extends Auditable {
+public abstract class Person extends Auditable implements UserDetails {
 
     protected String firstName;
 

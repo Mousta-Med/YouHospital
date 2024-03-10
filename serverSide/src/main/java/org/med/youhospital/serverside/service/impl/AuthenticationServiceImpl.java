@@ -6,7 +6,9 @@ import org.med.youhospital.serverside.model.entity.Admin;
 import org.med.youhospital.serverside.model.entity.Patient;
 import org.med.youhospital.serverside.model.entity.Staff;
 import org.med.youhospital.serverside.model.request.AuthenticationReq;
-import org.med.youhospital.serverside.model.response.AuthenticationResponse;
+import org.med.youhospital.serverside.model.request.PatientReq;
+import org.med.youhospital.serverside.model.response.AuthenticationRes;
+import org.med.youhospital.serverside.model.response.PatientRes;
 import org.med.youhospital.serverside.repository.AdminRepository;
 import org.med.youhospital.serverside.repository.PatientRepository;
 import org.med.youhospital.serverside.repository.StaffRepository;
@@ -46,18 +48,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-//    @Override
-//    public AuthenticationResponse register(UserDto userDto){
-//        User user = modelMapper.map(userDto, User.class);
-//        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//        user.setStatus(Status.PENDING);
-//        user = userRepository.save(user);
-//        String token = jwtUtil.generateToken(user);
-//         return new AuthenticationResponse(token, modelMapper.map(user, UserRespDto.class));
-//    }
+    @Override
+    public AuthenticationRes register(PatientReq patientReq){
+        Patient patient = modelMapper.map(patientReq, Patient.class);
+        patient.setPass(passwordEncoder.encode(patientReq.getPass()));
+        patient = patientRepository.save(patient);
+        String token = jwtUtil.generateToken(patient);
+         return new AuthenticationRes(token);
+    }
 
     @Override
-    public AuthenticationResponse login(AuthenticationReq authenticationReq) {
+    public AuthenticationRes login(AuthenticationReq authenticationReq) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationReq.getEmail(),
@@ -71,15 +72,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         if (admin.isPresent()) {
             token = jwtUtil.generateToken(admin.get());
-            return new AuthenticationResponse(token);
+            return new AuthenticationRes(token);
         }
         if (patient.isPresent()) {
             token = jwtUtil.generateToken(patient.get());
-            return new AuthenticationResponse(token);
+            return new AuthenticationRes(token);
         }
         if (staff.isPresent()) {
             token = jwtUtil.generateToken(staff.get());
-            return new AuthenticationResponse(token);
+            return new AuthenticationRes(token);
         }
         throw new UsernameNotFoundException("User Not Found With This Email: " + authenticationReq.getEmail());
     }
