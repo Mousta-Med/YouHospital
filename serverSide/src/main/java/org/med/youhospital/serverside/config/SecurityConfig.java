@@ -42,11 +42,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         req -> req
                                 .requestMatchers(getOpenedResources()).permitAll()
-//                                .requestMatchers("api/v1/user/**").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/api/v1/auth/**")
                                 .permitAll()
                                 .anyRequest()
-                                .authenticated())
+                                .authenticated()
+                )
                 .userDetailsService(userDetailsService)
                 .exceptionHandling(e -> e.accessDeniedHandler(accessDeniedHandler)
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
