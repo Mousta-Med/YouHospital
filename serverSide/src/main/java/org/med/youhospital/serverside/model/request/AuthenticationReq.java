@@ -1,9 +1,12 @@
 package org.med.youhospital.serverside.model.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthenticationReq {
 
     @NotBlank(message = "email should be not Empty")

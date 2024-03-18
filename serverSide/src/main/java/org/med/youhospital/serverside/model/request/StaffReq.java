@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class StaffReq extends PersonRes {
+public class StaffReq extends PersonRes {
 
     private LocalDate recruitmentDate;
 
@@ -28,5 +28,7 @@ public final class StaffReq extends PersonRes {
     private UUID departmentId;
 
     private UUID adminId;
+
+    private UUID operationId;
 
 }

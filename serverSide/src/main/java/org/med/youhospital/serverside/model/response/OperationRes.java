@@ -9,6 +9,7 @@ import org.med.youhospital.serverside.model.request.StaffReq;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 
 @Getter
@@ -28,6 +29,6 @@ public class OperationRes extends AuditableRes {
 
     private PatientReq patient;
 
-    private StaffReq staff;
+    private List<StaffReq> staffs;
 
 }

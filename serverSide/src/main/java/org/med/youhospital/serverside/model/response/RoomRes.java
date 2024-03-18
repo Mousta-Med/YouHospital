@@ -26,6 +26,6 @@ public class RoomRes extends AuditableRes {
 
     private DepartmentReq department;
 
-    private List<PatientReq> patient;
+    private List<PatientReq> patients;
 
 }

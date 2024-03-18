@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.med.youhospital.serverside.model.enums.StaffRole;
 import org.med.youhospital.serverside.model.request.DepartmentReq;
+import org.med.youhospital.serverside.model.request.ExaminationReq;
 import org.med.youhospital.serverside.model.request.OperationReq;
 import org.med.youhospital.serverside.model.request.RecipeReq;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class StaffRes extends PersonRes {
+public class StaffRes extends PersonRes {
 
     private LocalDate recruitmentDate;
 
@@ -29,8 +30,10 @@ public final class StaffRes extends PersonRes {
 
     private DepartmentReq department;
 
-    private List<OperationReq> operation;
+    private OperationReq operation;
 
     private List<RecipeReq> recipes;
+
+    private List<ExaminationReq> examinations;
 
 }

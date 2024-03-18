@@ -1,0 +1,32 @@
+<div class="flex" style="min-height: 100vh">
+  <div [formGroup]="loginForm"
+    class="surface-section w-full md:w-6 p-6 md:p-8 flex justify-content-center align-items-center flex-column w-full">
+    <div class="w-full">
+      <div class="mb-5">
+        <div class="text-900 text-3xl font-medium mb-3 text-center">Welcome Back</div>
+        <span class="text-600 font-medium mr-2">Don't have an account?</span><a
+        [href]="'/register'"
+        class="font-medium no-underline text-blue-500 cursor-pointer">Create today!</a></div>
+      <p-message *ngIf="errMsg" [text]="errMsg" severity="error" styleClass="mb-2 w-full"></p-message>
+      <div><label class="block text-900 font-medium mb-2" for="email2">Email</label><input
+        formControlName="email"
+        class="p-inputtext p-component p-element w-full mb-3 p-3" id="email2"
+        placeholder="Email"
+        type="email"><label class="block text-900 font-medium mb-2"
+                           for="password2">Password</label><input
+        formControlName="password"
+        class="p-inputtext p-component p-element w-full mb-3 p-3" id="password2" placeholder="Password"
+        type="password">
+        <button (click)="login()"
+                class="p-element p-ripple w-full p-3 p-button p-component"
+                [disabled]="loginForm.invalid"
+        ><span
+          aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-user"></span><span
+          class="p-button-label">LOG-IN</span><span class="p-ink"></span></button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="hidden md:block w-6 bg-no-repeat bg-cover bg-center"
+    style="background-image: url('https://res.cloudinary.com/dlqzkjt5k/image/upload/v1710609308/blur-hospital_f4dmou.jpg');"></div>
+</div>

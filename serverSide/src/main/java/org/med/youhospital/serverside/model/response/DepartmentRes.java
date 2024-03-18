@@ -21,11 +21,12 @@ public class DepartmentRes extends AuditableRes {
 
     private String name;
 
-    private List<StaffReq> staff;
-
-    private List<PatientReq> patient;
-
-    private List<RoomReq> room;
-
     private HospitalReq hospital;
+
+    private List<StaffReq> staffs;
+
+    private List<PatientReq> patients;
+
+    private List<RoomReq> rooms;
+
 }

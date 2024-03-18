@@ -13,22 +13,22 @@ import org.med.youhospital.serverside.model.enums.IdentityType;
 @MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class PersonReq {
+public class PersonReq {
 
-    protected String firstName;
+    private String firstName;
 
-    protected String lastName;
+    private String lastName;
 
-    protected Gender gender;
+    private Gender gender;
 
-    protected String phone;
+    private String phone;
 
-    protected String email;
+    private String email;
 
-    protected String pass;
+    private String pass;
 
-    protected IdentityType identityType;
+    private IdentityType identityType;
 
-    protected String identityCode;
+    private String identityCode;
 
 }

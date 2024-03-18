@@ -37,11 +37,15 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     public OperationRes save(OperationReq operationReq) {
-        Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
-        Staff staff = staffRepository.findById(operationReq.getStaffId()).orElseThrow(() -> new ResourceNotFoundException("staff Not found"));
         Operation operation = modelMapper.map(operationReq, Operation.class);
+        Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
+        List<UUID> staffIds = operationReq.getStaffsId();
+        List<Staff> staffs = staffIds.stream()
+                .map(staffId -> staffRepository.findById(staffId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found with ID: " + staffId)))
+                .collect(Collectors.toList());
+        operation.setStaffs(staffs);
         operation.setPatient(patient);
-        operation.setStaff(staff);
         return modelMapper.map(operationRepository.save(operation), OperationRes.class);
     }
 
@@ -58,13 +62,17 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     public OperationRes update(UUID id, OperationReq operationReq) {
-        Operation existingOperation = operationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
         Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
-        Staff staff = staffRepository.findById(operationReq.getStaffId()).orElseThrow(() -> new ResourceNotFoundException("staff Not found"));
+        Operation existingOperation = operationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
+        List<UUID> staffIds = operationReq.getStaffsId();
+        List<Staff> staffs = staffIds.stream()
+                .map(staffId -> staffRepository.findById(staffId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found with ID: " + staffId)))
+                .collect(Collectors.toList());
         BeanUtils.copyProperties(operationReq, existingOperation);
+        existingOperation.setStaffs(staffs);
         existingOperation.setId(id);
         existingOperation.setPatient(patient);
-        existingOperation.setStaff(staff);
         return modelMapper.map(operationRepository.save(existingOperation), OperationRes.class);
     }
 

@@ -29,8 +29,6 @@ public final class Patient extends Person {
 
     private String patientType;
 
-    private String problem;
-
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<Bill> bills;
 
@@ -39,6 +37,9 @@ public final class Patient extends Person {
 
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<Recipe> recipes;
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<Examination> examinations;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)

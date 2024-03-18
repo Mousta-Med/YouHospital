@@ -38,15 +38,23 @@ public final class Staff extends Person {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Department department;
 
+
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Admin admin;
 
-    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
-    private List<Operation> operations;
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Operation operation;
+
+//    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
+//    private List<Operation> operations;
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Recipe> recipes;
+
+    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
+    private List<Examination> examinations;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

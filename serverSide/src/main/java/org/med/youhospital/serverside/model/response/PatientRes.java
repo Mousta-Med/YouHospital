@@ -14,19 +14,19 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class PatientRes extends PersonRes {
+public class PatientRes extends PersonRes {
 
     private LocalDate dateOfBirth;
 
     private String patientType;
 
-    private String problem;
+    private List<BillReq> bills;
 
-    private List<BillReq> bill;
-
-    private List<OperationReq> operation;
+    private List<OperationReq> operations;
 
     private List<RecipeReq> recipes;
+
+    private List<ExaminationReq> examinations;
 
     private DepartmentReq department;
 

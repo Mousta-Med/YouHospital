@@ -4,9 +4,13 @@ package org.med.youhospital.serverside.service.impl;
 import org.med.youhospital.serverside.jwt.JWTUtil;
 import org.med.youhospital.serverside.model.entity.Admin;
 import org.med.youhospital.serverside.model.entity.Patient;
+import org.med.youhospital.serverside.model.entity.Person;
 import org.med.youhospital.serverside.model.entity.Staff;
 import org.med.youhospital.serverside.model.request.AuthenticationReq;
 import org.med.youhospital.serverside.model.request.PatientReq;
+import org.med.youhospital.serverside.model.request.PersonReq;
+import org.med.youhospital.serverside.model.request.StaffReq;
+import org.med.youhospital.serverside.model.response.AdminRes;
 import org.med.youhospital.serverside.model.response.AuthenticationRes;
 import org.med.youhospital.serverside.model.response.PatientRes;
 import org.med.youhospital.serverside.repository.AdminRepository;
@@ -22,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 
 @Service
@@ -54,7 +59,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         patient.setPass(passwordEncoder.encode(patientReq.getPass()));
         patient = patientRepository.save(patient);
         String token = jwtUtil.generateToken(patient);
-         return new AuthenticationRes(token);
+         return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(patientReq));
     }
 
     @Override
@@ -72,21 +77,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         if (admin.isPresent()) {
             token = jwtUtil.generateToken(admin.get());
-            return new AuthenticationRes(token);
+            return new AuthenticationRes(token, "ADMIN",Optional.empty(),Optional.of( modelMapper.map(admin, AdminRes.class)), Optional.empty());
         }
         if (patient.isPresent()) {
             token = jwtUtil.generateToken(patient.get());
-            return new AuthenticationRes(token);
+            return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientReq.class)));
         }
         if (staff.isPresent()) {
             token = jwtUtil.generateToken(staff.get());
-            return new AuthenticationRes(token);
+            return new AuthenticationRes(token, staff.get().getRole().name(),Optional.of(modelMapper.map(staff, StaffReq.class)),Optional.empty(),Optional.empty());
         }
         throw new UsernameNotFoundException("User Not Found With This Email: " + authenticationReq.getEmail());
     }
 
 //    @Override
-//    public AuthenticationResponse login(AuthenticationRequest userDto) {
+//    public AuthenticationRes login(AuthenticationReq userDto) {
 //            authenticationManager.authenticate(
 //                    new UsernamePasswordAuthenticationToken(
 //                            userDto.getEmail(),
@@ -102,7 +107,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 //                .orElseThrow(() -> new UsernameNotFoundException("User Not Found With This Email: " + userDto.getEmail()));
 //
 //        String token = jwtUtil.generateToken(user.get());
-//        return new AuthenticationResponse(token);
+//        return new AuthenticationRes(token, "", user.get());
 //    }
 
 

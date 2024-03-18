@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public final class AdminRes extends PersonRes {
 
-
-    private List<StaffReq> staffList;
+    private List<StaffReq> staffs;
 
 }

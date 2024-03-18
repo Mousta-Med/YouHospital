@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -27,6 +28,6 @@ public class OperationReq {
 
     private UUID patientId;
 
-    private UUID staffId;
+    private List<UUID> staffsId;
 
 }

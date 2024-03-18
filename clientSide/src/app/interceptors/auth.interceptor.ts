@@ -6,7 +6,7 @@ import {
   HttpInterceptor, HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AuthenticationResponse} from "../models/authentication-response.model";
+import {AuthenticationResponse} from "../models/Authentication-response.model";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

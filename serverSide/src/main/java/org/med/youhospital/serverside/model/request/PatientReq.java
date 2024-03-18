@@ -13,13 +13,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class PatientReq extends PersonReq {
+public class PatientReq extends PersonReq {
 
     private LocalDate dateOfBirth;
 
     private String patientType;
-
-    private String problem;
 
     private UUID departmentId;
 
