@@ -27,23 +27,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private PatientRepository patientRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Optional<Admin> adminUser = adminRepository.findByEmail(username);
+        Optional<Admin> adminUser = adminRepository.findByEmail(email);
         if (adminUser.isPresent()) {
-            return adminRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+            return adminRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
         }
 
-        Optional<Staff> staffUser = staffRepository.findByEmail(username);
+        Optional<Staff> staffUser = staffRepository.findByEmail(email);
         if (staffUser.isPresent()) {
-            return staffRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+            return staffRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
         }
 
-        Optional<Patient> patientUser = patientRepository.findByEmail(username);
+        Optional<Patient> patientUser = patientRepository.findByEmail(email);
         if (patientUser.isPresent()) {
-            return patientRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
+            return patientRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("No User Found with This given UserName"));
         }
 
-        throw new UsernameNotFoundException("User not found with username: " + username);
+        throw new UsernameNotFoundException("User not found with username: " + email);
     }
 }

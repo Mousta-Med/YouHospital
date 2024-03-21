@@ -50,7 +50,7 @@ public class JWTUtil {
     public String generateToken(Person person) {
         return Jwts
                 .builder()
-                .subject(person.getLastName())
+                .subject(person.getEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
                 .signWith(getSigningKey())

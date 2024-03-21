@@ -10,6 +10,7 @@ import {PatientComponent} from "./components/patient/patient.component";
 import {DoctorComponent} from "./components/doctor/doctor.component";
 import {NurseComponent} from "./components/nurse/nurse.component";
 import {ReceptionistComponent} from "./components/receptionist/receptionist.component";
+import {StaffComponent} from "./components/staff/staff.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,12 @@ const routes: Routes = [
       {
         path: 'admin',
         component: AdminComponent,
+        children: [
+          {
+            path: "staff",
+            component: StaffComponent
+          }
+        ],
         canActivate: [IsRole], data: { role: 'ADMIN' }
       },{
         path: 'patient',

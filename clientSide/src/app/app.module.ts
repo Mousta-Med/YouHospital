@@ -21,6 +21,14 @@ import { DoctorComponent } from './components/doctor/doctor.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { NurseComponent } from './components/nurse/nurse.component';
 import { ReceptionistComponent } from './components/receptionist/receptionist.component';
+import { CardComponent } from './components/card/card.component';
+import {ButtonModule} from "primeng/button";
+import { ManageStaffComponent } from './components/manage-staff/manage-staff.component';
+import {DialogModule} from "primeng/dialog";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import { StaffComponent } from './components/staff/staff.component';
 
 @NgModule({
 
@@ -35,6 +43,9 @@ import { ReceptionistComponent } from './components/receptionist/receptionist.co
     PatientComponent,
     NurseComponent,
     ReceptionistComponent,
+    CardComponent,
+    ManageStaffComponent,
+    StaffComponent,
 
   ],
   imports: [
@@ -48,9 +59,13 @@ import { ReceptionistComponent } from './components/receptionist/receptionist.co
     HttpClientModule,
     MessageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    DialogModule,
+    ToastModule,
+    ConfirmDialogModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true}],
+  providers: [MessageService,ConfirmationService, {provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true}],
   bootstrap: [AppComponent]
 })
 

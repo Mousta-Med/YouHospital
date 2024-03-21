@@ -27,11 +27,11 @@ export class StaffService {
   }
 
 
-  update(id: string, staff: Staff): Observable<Staff>{
+    update(id: string | undefined, staff: Staff): Observable<Staff>{
     return this.http.put<Staff>(`${this.staffUrl}/${id}`, staff);
   }
 
-  delete(id: string): Observable<void>{
+    delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.staffUrl}/${id}`);
   }
 }
