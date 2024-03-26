@@ -3,15 +3,20 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpHeaders
+  HttpInterceptor, HttpHeaders, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import {AuthenticationResponse} from "../models/Authentication-response.model";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+    private jwtHelper: JwtHelperService,
+    private router: Router,) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const storedUser = localStorage.getItem('user')
@@ -19,12 +24,25 @@ export class AuthInterceptor implements HttpInterceptor {
       const authResponse: AuthenticationResponse = JSON.parse(storedUser);
       const token: string = authResponse.token;
       if (token) {
-        const authRequest= request.clone({
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + token
-          })
-        });
-        return next.handle(authRequest);
+        // if (this.jwtHelper.isTokenExpired(token)){
+        //   localStorage.removeItem('user');
+        //   this.router.navigate(['login']);
+        // }else {
+          const authRequest= request.clone({
+            headers: new HttpHeaders({
+              Authorization: 'Bearer ' + token
+            })
+          });
+          return next.handle(authRequest).pipe(
+            catchError((error) => {
+              if (error.status === 401) {
+                  localStorage.removeItem('user');
+                  this.router.navigate(['login']);
+              }
+              return throwError(() => new Error(error))
+            })
+          );
+        // }
       }
     }
     return next.handle(request);

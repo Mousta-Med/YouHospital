@@ -11,6 +11,9 @@ import {DoctorComponent} from "./components/doctor/doctor.component";
 import {NurseComponent} from "./components/nurse/nurse.component";
 import {ReceptionistComponent} from "./components/receptionist/receptionist.component";
 import {StaffComponent} from "./components/staff/staff.component";
+import {HospitalComponent} from "./components/hospital/hospital.component";
+import {DepartmentComponent} from "./components/department/department.component";
+import {RoomComponent} from "./components/room/room.component";
 
 const routes: Routes = [
   {
@@ -25,6 +28,17 @@ const routes: Routes = [
           {
             path: "staff",
             component: StaffComponent
+          },
+          {
+            path: "hospital",
+            component: HospitalComponent
+          },
+          {
+            path: "department",
+            component: DepartmentComponent
+          },{
+            path: "room",
+            component: RoomComponent
           }
         ],
         canActivate: [IsRole], data: { role: 'ADMIN' }

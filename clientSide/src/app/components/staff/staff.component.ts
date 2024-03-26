@@ -34,7 +34,6 @@ export class StaffComponent implements OnInit{
     this.staffService.findAll()
       .subscribe({
         next: (data) => {
-          console.log(data)
           this.staffs = data;
         }
       });
