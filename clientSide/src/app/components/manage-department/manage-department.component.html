@@ -1,0 +1,27 @@
+<div [formGroup]="departmentForm" class="">
+  <h2>{{ title }}</h2>
+  <div class="w-full py-3">
+    <label class="block mb-1 text-color text-base" for="name">Name</label>
+    <span
+      class="p-input-icon-left w-full">
+          <i class="pi pi-sitemap"></i>
+          <input class="p-inputtext p-component p-element w-full" formControlName="name" id="name"
+                 placeholder="Department Name" type="text">
+        </span>
+  </div>
+  <button
+    (click)="onSubmit()"
+    [disabled]="departmentForm.invalid"
+    pButton
+    label="Submit"
+    class="w-full"
+  >
+  </button>
+  <button
+    (click)="onCancel()"
+    pButton
+    label="Cancel"
+    class="w-full p-button-outlined p-button-danger mt-2"
+  >
+  </button>
+</div>

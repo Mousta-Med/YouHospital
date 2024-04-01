@@ -17,7 +17,7 @@
     </a>
     <span class="p-input-icon-left"><i
       class="pi pi-search"></i>
-      <input class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search"
+      <input [(ngModel)]="searchQuery" (input)="filterItems()" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
              type="text"></span>
   </div>
   <div>
@@ -29,11 +29,10 @@
     class="surface-ground surface-border border-round flex-auto">
     <div class="p-4">
       <div class="grid">
-        <div class="col-12 md:col-6 xl:col-3 p-3">
+        <div *ngFor="let staff of staffs" class="col-12 md:col-6 xl:col-3 p-3">
           <app-card
             (delete)="deleteStaff($event)"
             (update)="updateStaff($event)"
-            *ngFor="let staff of staffs"
             [staff]="staff"
           ></app-card>
         </div>

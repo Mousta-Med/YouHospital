@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {Staff} from "../../models/Staff.model";
-import {StaffService} from "../../services/staff.service";
+import {Patient} from "../../models/Patient.model";
+import {PatientService} from "../../services/patient.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
-  selector: 'app-staff',
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.scss']
+  selector: 'app-patients',
+  templateUrl: './patients.component.html',
+  styleUrls: ['./patients.component.scss']
 })
-export class StaffComponent implements OnInit{
+export class PatientsComponent implements OnInit{
 
-  staffs: Staff[] = [];
+  patients: Patient[] = [];
 
-  staff!: Staff ;
+  patient!: Patient ;
 
   operation: 'update' | 'create' = "create";
 
@@ -20,40 +20,41 @@ export class StaffComponent implements OnInit{
 
   visible: boolean = false;
   constructor(
-    private staffService: StaffService,
+    private patientService: PatientService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
   }
 
   ngOnInit(): void {
-    this.findAllStaff();
+    this.findAllPatient();
   }
 
-  findAllStaff() {
-    this.staffService.findAll()
+  findAllPatient() {
+    this.patientService.findAll()
       .subscribe({
         next: (data) => {
-          this.staffs = data;
+          this.patients = data;
         }
       });
   }
 
-  save(newStaff: Staff) {
-    if (newStaff) {
+  save(newPatient: Patient) {
+    if (newPatient) {
       if (this.operation === 'create') {
-        this.staffService.save(newStaff)
+        this.patientService.save(newPatient)
           .subscribe({
             next: () => {
-              this.findAllStaff();
+              this.findAllPatient();
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
                 detail: 'Competition Created Successfully'
               });
-              this.staff = {
-                address: "",
-                adminId: "",
+              this.patient = {
+                dateOfBirth: "",
+                patientType: "",
+                roomId: "",
                 departmentId: "",
                 email: "",
                 firstName: "",
@@ -61,12 +62,8 @@ export class StaffComponent implements OnInit{
                 identityCode: "",
                 identityType: "PASSPORT",
                 lastName: "",
-                operationId: "",
                 pass: "",
-                phone: "",
-                recruitmentDate: "",
-                role: "NURSE",
-                specialization: ""
+                phone: ""
               };
             }, error: (err) => {
               console.log(err)
@@ -78,10 +75,10 @@ export class StaffComponent implements OnInit{
             }
           });
       } else if (this.operation === 'update') {
-        this.staffService.update(this.staff.id, newStaff)
+        this.patientService.update(this.patient.id, newPatient)
           .subscribe({
             next: () => {
-              this.findAllStaff();
+              this.findAllPatient();
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
@@ -98,13 +95,14 @@ export class StaffComponent implements OnInit{
     this.visible = false;
   }
 
-  createStaff() {
-    this.title = 'New Staff';
+  createPatient() {
+    this.title = 'New Patient';
     this.operation = 'create';
     this.visible = true;
-    this.staff = {
-      address: "",
-      adminId: "",
+    this.patient = {
+      dateOfBirth: "",
+      patientType: "",
+      roomId: "",
       departmentId: "",
       email: "",
       firstName: "",
@@ -112,27 +110,23 @@ export class StaffComponent implements OnInit{
       identityCode: "",
       identityType: "PASSPORT",
       lastName: "",
-      operationId: "",
       pass: "",
-      phone: "",
-      recruitmentDate: "",
-      role: "NURSE",
-      specialization: ""
+      phone: ""
     };
   }
 
 
-  deleteStaff(deletedStaff: Staff) {
+  deletePatient(deletedPatient: Patient) {
     this.confirmationService.confirm({
-      header: 'Delete Staff',
+      header: 'Delete Patient',
       message: `Are you sure you want to delete? You can\'t undo this action afterwords`,
       accept: () => {
-        this.staffService.delete(deletedStaff.id)
+        this.patientService.delete(deletedPatient.id)
           .subscribe({
             next: () => {
-              this.findAllStaff();
+              this.findAllPatient();
               this.messageService.add({
-                severity: 'success', summary: 'Staff deleted', detail: `Staff was successfully deleted`
+                severity: 'success', summary: 'Patient deleted', detail: `Patient was successfully deleted`
               });
             },error:(err) =>{
               console.log(err);
@@ -145,19 +139,18 @@ export class StaffComponent implements OnInit{
   searchQuery: string = '';
   filterItems() {
     if (this.searchQuery.trim() === ''){
-      this.findAllStaff();
+      this.findAllPatient();
     }else {
-    this.staffs = this.staffs.filter(item =>
-      item.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+      this.patients = this.patients.filter(item =>
+        item.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     }
   }
 
-
-  updateStaff(updatedStaff: Staff) {
-    this.title = 'Update Staff';
+  updatePatient(updatedPatient: Patient) {
+    this.title = 'Update Patient';
     this.operation = 'update';
-    this.staff = updatedStaff;
+    this.patient = updatedPatient;
     this.visible = true;
   }
 

@@ -1,0 +1,52 @@
+<p-dialog [(visible)]="visible" [dismissableMask]="true" [draggable]="false" [modal]="true" [resizable]="false"
+          [style]="{ width: '50vw' }" header="{{title}}">
+  <app-manage-patient
+    (cancel)="cancel()"
+    (submit)="save($event)"
+    [patient]="patient"
+  ></app-manage-patient>
+</p-dialog>
+<div
+  class="flex justify-content-between align-items-center px-5 surface-section relative lg:static border-bottom-1 surface-border"
+  style="height: 60px;">
+  <div class="flex">
+    <a
+      class="p-ripple p-element cursor-pointer inline-flex align-items-center justify-content-center lg:hidden text-700 mr-3">
+      <i class="pi pi-bars text-4xl"></i>
+      <span class="p-ink"></span>
+    </a>
+    <span class="p-input-icon-left"><i
+      class="pi pi-search"></i>
+      <input [(ngModel)]="searchQuery" (input)="filterItems()" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
+             type="text"></span>
+  </div>
+  <div>
+    <p-button (click)="createPatient()" severity="success" size="small" label="Add" icon="pi pi-user-plus"></p-button>
+  </div>
+</div>
+<div class="lg:px-8 md:px-6 px-4 py-8 surface-ground ">
+  <div class="surface-ground">
+    <div class="grid">
+      <div *ngFor="let patient of patients" class="col-12 md:col-6 xl:col-4 p-3">
+        <div class="surface-card shadow-2 border-round p-4">
+          <div class="flex border-bottom-1 surface-border pb-4">
+            <img class="mr-3" src="assets/images/patient.png" style="width: 70px; height: 70px;">
+            <div class="flex flex-column align-items-start">
+              <span class="text-xl text-900 font-medium mb-1">{{patient.firstName}} {{patient.lastName}}</span>
+              <span class="text-600 font-medium mb-2">{{patient.patientType}}</span>
+              <span class="bg-blue-50 text-blue-400 border-round inline-flex py-1 px-2 text-sm">{{patient.dateOfBirth}}</span>
+            </div>
+          </div>
+          <div class="flex justify-content-between pt-4">
+            <button (click)="updatePatient(patient)" class="p-element p-ripple p-button-outlined p-button-secondary w-6 mr-2 p-button p-component" icon="pi pi-search" label="View" pbutton=""><span
+              aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-pencil"></span><span
+              class="p-button-label">Edit</span><span class="p-ink"></span></button>
+            <button (click)="deletePatient(patient)" class="p-element p-ripple p-button-outlined p-button-secondary w-6 ml-2 p-button p-component" icon="pi pi-user-plus" label="Follow" pbutton=""><span
+              aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-trash"></span><span
+              class="p-button-label">Delete</span><span class="p-ink"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

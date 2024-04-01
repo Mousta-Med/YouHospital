@@ -11,11 +11,9 @@ import {ActivatedRoute} from "@angular/router";
 export class AdminComponent implements OnInit{
 
   menuItems: Array<MenuItem> = [
-    {label: 'Dashboard', icon: 'pi pi-home', routerLink: '/admin'},
+    {label: 'Home', icon: 'pi pi-home', routerLink: '/admin'},
     {label: 'Hospital', icon: 'pi pi-building', routerLink: '/admin/hospital'},
     {label: 'Staff', icon: 'pi pi-users', routerLink: '/admin/staff'},
-    {label: 'Department', icon: 'pi pi-sitemap', routerLink: '/admin/department'},
-    {label: 'Room', icon: 'pi pi-home', routerLink: '/admin/room'},
   ];
   constructor(
     private sharedService: SharedService,

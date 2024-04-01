@@ -4,9 +4,7 @@
     <div class="w-full">
       <div class="mb-5">
         <div class="text-900 text-3xl font-medium mb-3 text-center">Welcome Back</div>
-        <span class="text-600 font-medium mr-2">Don't have an account?</span><a
-        [href]="'/register'"
-        class="font-medium no-underline text-blue-500 cursor-pointer">Create today!</a></div>
+      </div>
       <p-message *ngIf="errMsg" [text]="errMsg" severity="error" styleClass="mb-2 w-full"></p-message>
       <div><label class="block text-900 font-medium mb-2" for="email2">Email</label><input
         formControlName="email"

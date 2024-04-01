@@ -1,1 +1,9 @@
-<p>receptionist works!</p>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '45vw'}"
+                 acceptButtonStyleClass="p-button-danger"
+                 acceptIcon="pi pi-trash"
+                 acceptLabel="Delete"
+                 rejectLabel="Cancel">
+</p-confirmDialog>
+<app-home *ngIf="!hasChildren()"></app-home>
+<router-outlet></router-outlet>
