@@ -27,11 +27,11 @@ export class OperationService {
   }
 
 
-  update(id: string, operation: Operation): Observable<Operation>{
+  update(id: string | undefined, operation: Operation): Observable<Operation>{
     return this.http.put<Operation>(`${this.operationUrl}/${id}`, operation);
   }
 
-  delete(id: string): Observable<void>{
+    delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.operationUrl}/${id}`);
   }
 }

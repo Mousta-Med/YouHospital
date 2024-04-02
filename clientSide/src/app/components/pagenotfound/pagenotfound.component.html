@@ -10,14 +10,10 @@
       <div  class="mt-6 mb-5 font-bold text-6xl text-900">Page Not Found</div>
       <p class="text-700 text-3xl mt-0 mb-6">Sorry, we couldn't find the page.</p>
       <div >
-        <button class="p-element p-ripple p-button-text mr-2 p-button p-component" icon="pi pi-arrow-left" label="Go Back" pbutton="" pripple=""
+        <button (click)="history.back()" class="p-element p-ripple p-button-text mr-2 p-button p-component" icon="pi pi-arrow-left" label="Go Back" pbutton="" pripple=""
                 type="button"><span
           aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-arrow-left"></span><span
           class="p-button-label">Go Back</span><span class="p-ink"></span></button>
-        <button class="p-element p-ripple p-button p-component" icon="pi pi-home" label="Go to Dashboard" pbutton="" pripple=""
-                type="button"><span
-          aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-home"></span><span
-          class="p-button-label">Go to Dashboard</span><span class="p-ink"></span></button>
       </div>
     </div>
   </div>

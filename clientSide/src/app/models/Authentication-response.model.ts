@@ -6,7 +6,7 @@ import {Patient} from "./Patient.model";
 export interface AuthenticationResponse{
 
   token: string,
-  role: 'ADMIN' |'PATIENT'|'DOCTOR'|'NURSE'|'RECEPTIONIST',
+  role: 'ADMIN' |'PATIENT' |'NURSE'|'RECEPTIONIST',
   admin?: Admin,
   staff?: Staff,
   patient?: Patient

@@ -27,11 +27,11 @@ export class PatientService {
   }
 
 
-  update(id: string, patient: Patient): Observable<Patient>{
+    update(id: string | undefined, patient: Patient): Observable<Patient>{
     return this.http.put<Patient>(`${this.patientUrl}/${id}`, patient);
   }
 
-  delete(id: string): Observable<void>{
+  delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.patientUrl}/${id}`);
   }
 }

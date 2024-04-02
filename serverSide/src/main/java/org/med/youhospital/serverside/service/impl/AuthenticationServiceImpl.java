@@ -58,7 +58,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Patient patient = modelMapper.map(patientReq, Patient.class);
         patient.setPass(passwordEncoder.encode(patientReq.getPass()));
         patient = patientRepository.save(patient);
-        String token = jwtUtil.generateToken(patient);
+        String token = jwtUtil.generateToken(patient, "PATIENT");
          return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(patientReq));
     }
 
@@ -76,15 +76,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Optional<Staff> staff = staffRepository.findByEmail(authenticationReq.getEmail());
 
         if (admin.isPresent()) {
-            token = jwtUtil.generateToken(admin.get());
+            token = jwtUtil.generateToken(admin.get(),"ADMIN");
             return new AuthenticationRes(token, "ADMIN",Optional.empty(),Optional.of( modelMapper.map(admin, AdminRes.class)), Optional.empty());
         }
         if (patient.isPresent()) {
-            token = jwtUtil.generateToken(patient.get());
+            token = jwtUtil.generateToken(patient.get(), "PATIENT");
             return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientReq.class)));
         }
         if (staff.isPresent()) {
-            token = jwtUtil.generateToken(staff.get());
+            token = jwtUtil.generateToken(staff.get(), staff.get().getRole().name());
             return new AuthenticationRes(token, staff.get().getRole().name(),Optional.of(modelMapper.map(staff, StaffReq.class)),Optional.empty(),Optional.empty());
         }
         throw new UsernameNotFoundException("User Not Found With This Email: " + authenticationReq.getEmail());

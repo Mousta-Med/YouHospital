@@ -17,11 +17,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AuditableRes {
-
-    protected String createdBy;
-    protected LocalDateTime CreatedDate;
-    protected String lastModifiedBy;
-    protected LocalDateTime lastModifiedDate;
+public class AuditableRes {
     private UUID id;
+    private String createdBy;
+    private LocalDateTime CreatedDate;
+    private String lastModifiedBy;
+    private LocalDateTime lastModifiedDate;
 }

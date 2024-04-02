@@ -10,7 +10,7 @@ export interface Department extends Auditable{
 
     hospitalId: string;
 
-    hospital: Hospital;
+    hospital?: Hospital;
 
     staffs?: Array<Staff>;
 

@@ -7,6 +7,9 @@ export interface Bill extends Auditable{
 
     patientId: string;
 
+
+   status: 'PENDING'|'UNPAID'|'PAID';
+
     patient?: Patient;
 
 }

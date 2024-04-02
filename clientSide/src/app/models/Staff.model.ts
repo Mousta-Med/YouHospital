@@ -12,13 +12,13 @@ export interface Staff extends Person {
 
   specialization: string;
 
-  role: 'DOCTOR' | 'NURSE' | 'RECEPTIONIST';
+  role: 'NURSE' | 'RECEPTIONIST' | 'DOCTOR';
 
   departmentId: string;
 
   operationId: string;
 
-  adminId: string;
+  adminId?: string;
 
   department?: Department;
 

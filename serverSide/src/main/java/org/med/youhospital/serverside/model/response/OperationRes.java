@@ -10,6 +10,7 @@ import org.med.youhospital.serverside.model.request.StaffReq;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -28,6 +29,10 @@ public class OperationRes extends AuditableRes {
     private Double cost;
 
     private PatientReq patient;
+
+    private UUID patientId;
+
+    private List<UUID> staffsId;
 
     private List<StaffReq> staffs;
 

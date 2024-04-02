@@ -46,13 +46,23 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<RecipeRes> findAll() {
-        return recipeRepository.findAll().stream().map(Recipe -> modelMapper.map(Recipe, RecipeRes.class)).collect(Collectors.toList());
+        return recipeRepository.findAll().stream().map(recipe -> {
+            RecipeRes recipeRes = modelMapper.map(recipe, RecipeRes.class);
+            recipeRes.setStaffId(recipe.getStaff().getId());
+            recipeRes.setPatientId(recipe.getPatient().getId());
+            return recipeRes;
+        }).collect(Collectors.toList());
     }
 
     @Override
     public RecipeRes findOne(UUID id) {
         return recipeRepository.findById(id)
-                .map(Recipe -> modelMapper.map(Recipe, RecipeRes.class)).orElseThrow(() -> new ResourceNotFoundException("Recipe Not found with this: " + id));
+                .map(recipe -> {
+                    RecipeRes recipeRes = modelMapper.map(recipe, RecipeRes.class);
+                    recipeRes.setStaffId(recipe.getStaff().getId());
+                    recipeRes.setPatientId(recipe.getPatient().getId());
+                    return recipeRes;
+                }).orElseThrow(() -> new ResourceNotFoundException("Recipe Not found with this: " + id));
     }
 
     @Override

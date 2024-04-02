@@ -8,7 +8,7 @@ export interface Operation extends Auditable{
 
   time: string;
 
-  duration: string;
+  duration: number;
 
   cost: number;
 

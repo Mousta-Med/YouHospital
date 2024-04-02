@@ -12,6 +12,7 @@ import org.med.youhospital.serverside.model.request.RecipeReq;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -29,6 +30,8 @@ public class StaffRes extends PersonRes {
     private StaffRole role;
 
     private DepartmentReq department;
+
+    private UUID departmentId;
 
     private OperationReq operation;
 

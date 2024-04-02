@@ -4,7 +4,7 @@ import {Auditable} from "./Auditable.model";
 
 export interface Recipe extends Auditable{
 
-  Medications: string;
+  medications: string;
 
   instructions: string;
 

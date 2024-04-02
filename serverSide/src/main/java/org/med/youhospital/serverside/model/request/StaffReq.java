@@ -1,5 +1,7 @@
 package org.med.youhospital.serverside.model.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,19 +17,22 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StaffReq extends PersonRes {
+public class StaffReq extends PersonReq {
 
     private LocalDate recruitmentDate;
 
+    @NotBlank(message = "address should be not blank")
     private String address;
 
+    @NotBlank(message = "specialization should be not blank")
     private String specialization;
 
     private StaffRole role;
 
-    private UUID departmentId;
-
+    @NotNull(message = "adminId should be not null")
     private UUID adminId;
+
+    private UUID departmentId;
 
     private UUID operationId;
 

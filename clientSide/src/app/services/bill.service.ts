@@ -27,11 +27,11 @@ export class BillService {
   }
 
 
-  update(id: string, bill: Bill): Observable<Bill>{
+  update(id: string | undefined, bill: Bill): Observable<Bill>{
     return this.http.put<Bill>(`${this.billUrl}/${id}`, bill);
   }
 
-  delete(id: string): Observable<void>{
+    delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.billUrl}/${id}`);
   }
 }

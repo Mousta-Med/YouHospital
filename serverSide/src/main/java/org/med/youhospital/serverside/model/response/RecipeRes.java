@@ -8,6 +8,7 @@ import org.med.youhospital.serverside.model.request.PatientReq;
 import org.med.youhospital.serverside.model.request.StaffReq;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 @Getter
@@ -27,6 +28,10 @@ public class RecipeRes extends AuditableRes {
 
     private PatientReq patient;
 
+    private UUID patientId;
+
     private StaffReq staff;
+
+    private UUID staffId;
 
 }

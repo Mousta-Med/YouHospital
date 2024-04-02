@@ -27,11 +27,11 @@ export class ExaminationService {
   }
 
 
-  update(id: string, examination: Examination): Observable<Examination>{
+  update(id: string | undefined, examination: Examination): Observable<Examination>{
     return this.http.put<Examination>(`${this.examinationUrl}/${id}`, examination);
   }
 
-  delete(id: string): Observable<void>{
+  delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.examinationUrl}/${id}`);
   }
 }

@@ -18,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 public class DepartmentRes extends AuditableRes {
 
-
     private String name;
 
     private HospitalReq hospital;

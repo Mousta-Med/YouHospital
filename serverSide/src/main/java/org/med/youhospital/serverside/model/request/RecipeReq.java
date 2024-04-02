@@ -1,5 +1,9 @@
 package org.med.youhospital.serverside.model.request;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +19,22 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RecipeReq {
 
+    @NotBlank(message = "medication should be not blank")
+    private String medications;
 
-    private String Medications;
-
+    @NotBlank(message = "instructions should be not blank")
     private String instructions;
 
+    @FutureOrPresent(message = "startDate should be in future or present")
     private LocalDate startDate;
 
+    @Future(message = "endDate should be in future")
     private LocalDate endDate;
 
+    @NotNull(message = "patientId should be not null")
     private UUID patientId;
 
+    @NotNull(message = "staffId should be not null")
     private UUID staffId;
 
 }

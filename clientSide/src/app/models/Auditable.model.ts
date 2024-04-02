@@ -4,7 +4,7 @@ export interface Auditable {
 
   createdBy?: string;
 
-  CreatedDate?: string;
+  createdDate?: string;
 
   lastModifiedBy?: string;
 

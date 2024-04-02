@@ -23,5 +23,9 @@ public class ExaminationRes extends Auditable {
 
     private PatientReq patient;
 
+    private UUID patientId;
+
     private StaffReq staff;
+
+    private UUID staffId;
 }

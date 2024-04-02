@@ -13,6 +13,7 @@ import org.med.youhospital.serverside.service.PatientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,12 +35,16 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public PatientRes save(PatientReq patientReq) {
         Department department = departmentRepository.findById(patientReq.getDepartmentId()).orElseThrow(() -> new ResourceNotFoundException("Department Not found"));
         Room room = roomRepository.findById(patientReq.getRoomId()).orElseThrow(() -> new ResourceNotFoundException("Room Not found"));
         Patient patient = modelMapper.map(patientReq, Patient.class);
+        patient.setPass(passwordEncoder.encode(patientReq.getPass()));
         patient.setDepartment(department);
         patient.setRoom(room);
         return modelMapper.map(patientRepository.save(patient), PatientRes.class);
@@ -47,13 +52,23 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public List<PatientRes> findAll() {
-        return patientRepository.findAll().stream().map(Patient -> modelMapper.map(Patient, PatientRes.class)).collect(Collectors.toList());
+        return patientRepository.findAll().stream().map(patient -> {
+            PatientRes patientRes = modelMapper.map(patient, PatientRes.class);
+            patientRes.setDepartmentId(patient.getDepartment().getId());
+            patientRes.setRoomId(patient.getRoom().getId());
+            return patientRes;
+        }).collect(Collectors.toList());
     }
 
     @Override
     public PatientRes findOne(UUID id) {
         return patientRepository.findById(id)
-                .map(Patient -> modelMapper.map(Patient, PatientRes.class)).orElseThrow(() -> new ResourceNotFoundException("Patient Not found with this: " + id));
+                .map(patient -> {
+                    PatientRes patientRes = modelMapper.map(patient, PatientRes.class);
+                    patientRes.setDepartmentId(patient.getDepartment().getId());
+                    patientRes.setRoomId(patient.getRoom().getId());
+                    return patientRes;
+                }).orElseThrow(() -> new ResourceNotFoundException("Patient Not found with this: " + id));
     }
 
     @Override

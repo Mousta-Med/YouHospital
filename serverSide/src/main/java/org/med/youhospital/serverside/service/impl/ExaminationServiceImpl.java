@@ -1,13 +1,13 @@
 package org.med.youhospital.serverside.service.impl;
 
 import org.med.youhospital.serverside.exception.ResourceNotFoundException;
-import org.med.youhospital.serverside.model.entity.Patient;
 import org.med.youhospital.serverside.model.entity.Examination;
+import org.med.youhospital.serverside.model.entity.Patient;
 import org.med.youhospital.serverside.model.entity.Staff;
 import org.med.youhospital.serverside.model.request.ExaminationReq;
 import org.med.youhospital.serverside.model.response.ExaminationRes;
-import org.med.youhospital.serverside.repository.PatientRepository;
 import org.med.youhospital.serverside.repository.ExaminationRepository;
+import org.med.youhospital.serverside.repository.PatientRepository;
 import org.med.youhospital.serverside.repository.StaffRepository;
 import org.med.youhospital.serverside.service.ExaminationService;
 import org.modelmapper.ModelMapper;
@@ -46,13 +46,23 @@ public class ExaminationServiceImpl implements ExaminationService {
 
     @Override
     public List<ExaminationRes> findAll() {
-        return examinationRepository.findAll().stream().map(Examination -> modelMapper.map(Examination, ExaminationRes.class)).collect(Collectors.toList());
+        return examinationRepository.findAll().stream().map(examination -> {
+            ExaminationRes examinationRes = modelMapper.map(examination, ExaminationRes.class);
+            examinationRes.setPatientId(examination.getPatient().getId());
+            examinationRes.setStaffId(examination.getStaff().getId());
+            return examinationRes;
+        }).collect(Collectors.toList());
     }
 
     @Override
     public ExaminationRes findOne(UUID id) {
         return examinationRepository.findById(id)
-                .map(Examination -> modelMapper.map(Examination, ExaminationRes.class)).orElseThrow(() -> new ResourceNotFoundException("Examination Not found with this: " + id));
+                .map(examination -> {
+                    ExaminationRes examinationRes = modelMapper.map(examination, ExaminationRes.class);
+                    examinationRes.setPatientId(examination.getPatient().getId());
+                    examinationRes.setStaffId(examination.getStaff().getId());
+                    return examinationRes;
+                }).orElseThrow(() -> new ResourceNotFoundException("Examination Not found with this: " + id));
     }
 
     @Override

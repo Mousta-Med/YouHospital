@@ -21,30 +21,30 @@ public abstract class BaseController<Request, Id, Response, Service extends Base
 
 
     @GetMapping
-    public ResponseEntity<List<Response>> findAllUsers() {
+    public ResponseEntity<List<Response>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
 
     @GetMapping("/{num}")
-    public ResponseEntity<Response> findOneUser(@PathVariable Id num) {
+    public ResponseEntity<Response> findOne(@PathVariable Id num) {
         return ResponseEntity.ok(service.findOne(num));
     }
 
 
     @PostMapping
-    public ResponseEntity<Response> saveUser(@RequestBody @Valid Request userDto) {
+    public ResponseEntity<Response> saveDepartment(@RequestBody @Valid Request userDto) {
         return ResponseEntity.ok(service.save(userDto));
     }
 
     @PutMapping("/{num}")
-    public ResponseEntity<Response> updateUser(@PathVariable Id num, @RequestBody @Valid Request userDto) {
+    public ResponseEntity<Response> updateDepartment(@PathVariable Id num, @RequestBody @Valid Request userDto) {
         return ResponseEntity.ok(service.update(num, userDto));
     }
 
 
     @DeleteMapping("/{num}")
-    public ResponseEntity<Void> deleteUser(@PathVariable(name = "num") Id num) {
+    public ResponseEntity<Void> deleteDepartment(@PathVariable(name = "num") Id num) {
         service.delete(num);
         return ResponseEntity.noContent().build();
     }

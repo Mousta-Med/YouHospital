@@ -1,0 +1,44 @@
+<p-dialog [(visible)]="visible" [dismissableMask]="true" [draggable]="false" [modal]="true" [resizable]="false"
+          [style]="{ width: '50vw' }" header="{{title}}">
+  <app-manage-operation
+    (cancel)="cancel()"
+    (submit)="save($event)"
+    [operation]="operation"
+  ></app-manage-operation>
+</p-dialog>
+<div class="lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted">
+  <div  class="font-bold text-5xl text-900 mb-3">Operations</div>
+  <div  class="text-700 text-xl line-height-3 mb-5">List Of All Operations.</div>
+  <p-button styleClass="mb-3" (onClick)="createOperation()" severity="success" size="small" label="Add Operation" icon=""></p-button>
+  <div class="surface-ground">
+    <div class="grid">
+      <div *ngFor="let operation of operations" class="col-12 md:col-6 xl:col-3">
+        <div class="surface-card shadow-2 border-round p-3" style="border-radius: 6px;">
+          <div class="flex justify-content-between align-items-start">
+            <div>
+              <div class="text-xl font-medium text-900 mb-2">
+                {{operation.patient?.firstName}}
+              </div>
+              <p class="mt-0 mb-3 text-600">{{operation.date}}</p>
+            </div>
+            <div class="">
+              <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateOperation(operation)"
+                      class="p-button-rounded p-button-text"></button>
+              <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteOperation(operation)"
+                      class="p-button-rounded p-button-danger p-button-text"></button>
+            </div>
+          </div>
+          <ul class="list-none m-0 p-0">
+            <li class="px-0 py-2 flex justify-content-between align-items-center border-bottom-1 surface-border"><span
+              class="text-600 font-medium text-sm">Time</span><span class="text-900 font-medium text-sm">{{operation.time}}</span>
+            </li>
+            <li class="px-0 py-2 flex justify-content-between align-items-center border-bottom-1 surface-border"><span
+              class="text-600 font-medium text-sm">Duration in Hours</span><span class="text-900 font-medium text-sm">{{operation.duration}}</span></li>
+            <li class="px-0 py-2 flex justify-content-between align-items-center"><span
+              class="text-600 font-medium text-sm">Cost</span><span class="text-900 font-medium text-sm">{{operation.cost}} $</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

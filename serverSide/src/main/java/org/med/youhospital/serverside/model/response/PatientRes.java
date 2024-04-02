@@ -8,6 +8,7 @@ import org.med.youhospital.serverside.model.request.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -27,6 +28,10 @@ public class PatientRes extends PersonRes {
     private List<RecipeReq> recipes;
 
     private List<ExaminationReq> examinations;
+
+    private UUID departmentId;
+
+    private UUID roomId;
 
     private DepartmentReq department;
 

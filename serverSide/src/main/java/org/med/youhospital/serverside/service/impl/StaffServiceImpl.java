@@ -13,6 +13,7 @@ import org.med.youhospital.serverside.service.StaffService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,12 +35,16 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public StaffRes save(StaffReq staffReq) {
         Department department = departmentRepository.findById(staffReq.getDepartmentId()).orElseThrow(() -> new ResourceNotFoundException("Department Not found"));
         Admin admin = adminRepository.findById(staffReq.getAdminId()).orElseThrow(() -> new ResourceNotFoundException("Admin Not found"));
         Staff staff = modelMapper.map(staffReq, Staff.class);
+        staff.setPass(passwordEncoder.encode(staffReq.getPass()));
         staff.setDepartment(department);
         staff.setAdmin(admin);
         return modelMapper.map(staffRepository.save(staff), StaffRes.class);
@@ -47,13 +52,24 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<StaffRes> findAll() {
-        return staffRepository.findAll().stream().map(Staff -> modelMapper.map(Staff, StaffRes.class)).collect(Collectors.toList());
+        return staffRepository.findAll()
+                .stream()
+                .map(staff -> {
+                    StaffRes staffRes = modelMapper.map(staff, StaffRes.class);
+                    staffRes.setDepartmentId(staff.getDepartment().getId());
+                    return staffRes;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
     public StaffRes findOne(UUID id) {
         return staffRepository.findById(id)
-                .map(Staff -> modelMapper.map(Staff, StaffRes.class)).orElseThrow(() -> new ResourceNotFoundException("Staff Not found with this: " + id));
+                .map(staff -> {
+                    StaffRes staffRes = modelMapper.map(staff, StaffRes.class);
+                    staffRes.setDepartmentId(staff.getDepartment().getId());
+                    return staffRes;
+                }).orElseThrow(() -> new ResourceNotFoundException("Staff Not found with this: " + id));
     }
 
     @Override

@@ -1,0 +1,69 @@
+<div [formGroup]="recipeForm" class=" p-dialog-content">
+  <div class="flex flex-column gap-3 mt-3 ">
+    <div class="flex gap-3">
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base" for="name">Recipe Start Date</label>
+        <span
+          class="p-input-icon-left w-full">
+          <i class="pi pi-user"></i>
+          <input class="p-inputtext p-component p-element w-full" formControlName="startDate" id="name"
+                 [min]="minDate | date:'yyyy-MM-dd'" type="date">
+        </span>
+      </div>
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base" for="familyName">Recipe End Date</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="endDate" id="familyName"
+               [min]="endDate | date:'yyyy-MM-dd'" type="date">
+        </span>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base">Recipe Medications</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="medications"
+               placeholder="Medications" type="text">
+        </span>
+      </div>
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base">Recipe Instructions</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="instructions"
+               placeholder="Instructions"  type="text">
+        </span>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <div class="w-full" >
+        <label class="block mb-1 text-color text-base">Patient</label>
+        <p-dropdown styleClass="w-full" dropdownIcon="pi pi-user-plus" appendTo="body" [options]="patients" formControlName="patientId" optionLabel="lastName" optionValue="id" placeholder="Select Patient"></p-dropdown>
+      </div>
+      <div class="w-full" >
+        <label class="block mb-1 text-color text-base">Staff</label>
+        <p-dropdown styleClass="w-full" dropdownIcon="pi pi-user-plus" appendTo="body" [options]="staffs" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-dropdown>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-dialog-footer">
+  <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
+    <button (click)="onCancel()" class="p-element p-ripple p-button-text p-button p-component">
+      <span
+        class="p-button-label">Cancel
+      </span>
+    </button>
+    <button (click)="onSubmit()" [disabled]="recipeForm.invalid"
+            class="p-element p-ripple p-button-rounded p-button p-component">
+      <span
+        class="p-button-label">Submit
+      </span>
+    </button>
+  </div>
+</div>

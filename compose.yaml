@@ -27,14 +27,14 @@ services:
       }'
     stdin_open: true
     tty: true
-#  clientside:
-#    build: ./clientSide
-#    container_name: clientSide
-#    ports:
-#      - "4201:4201"
-#    links:
-#      - serverside
-#    working_dir: /clientside
+  clientside:
+    build: ./clientSide
+    container_name: clientSide
+    ports:
+      - "4201:4201"
+    links:
+      - serverside
+    working_dir: /clientside
 volumes:
   db:
     driver: local

@@ -18,4 +18,6 @@ export interface Person extends Auditable{
 
   identityCode: string;
 
+  fullName?: string;
+
 }

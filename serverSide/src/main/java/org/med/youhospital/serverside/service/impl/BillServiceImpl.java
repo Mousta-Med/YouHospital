@@ -40,13 +40,21 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public List<BillRes> findAll() {
-        return billRepository.findAll().stream().map(Bill -> modelMapper.map(Bill, BillRes.class)).collect(Collectors.toList());
+        return billRepository.findAll().stream().map(bill -> {
+            BillRes billRes = modelMapper.map(bill, BillRes.class);
+            billRes.setPatientId(bill.getPatient().getId());
+            return billRes;
+        }).collect(Collectors.toList());
     }
 
     @Override
     public BillRes findOne(UUID id) {
         return billRepository.findById(id)
-                .map(Bill -> modelMapper.map(Bill, BillRes.class)).orElseThrow(() -> new ResourceNotFoundException("Bill Not found with this: " + id));
+                .map(bill -> {
+                    BillRes billRes = modelMapper.map(bill, BillRes.class);
+                    billRes.setPatientId(bill.getPatient().getId());
+                    return billRes;
+                }).orElseThrow(() -> new ResourceNotFoundException("Bill Not found with this: " + id));
     }
 
     @Override

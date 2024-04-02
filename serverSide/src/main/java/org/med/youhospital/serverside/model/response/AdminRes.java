@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public final class AdminRes extends PersonRes {
+public class AdminRes extends PersonRes {
 
     private List<StaffReq> staffs;
 

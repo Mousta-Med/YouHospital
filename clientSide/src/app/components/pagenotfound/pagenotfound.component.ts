@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class PagenotfoundComponent {
 
+    protected readonly location = location;
+  protected readonly history = history;
 }

@@ -27,11 +27,11 @@ export class RecipeService {
   }
 
 
-  update(id: string, recipe: Recipe): Observable<Recipe>{
+    update(id: string | undefined, recipe: Recipe): Observable<Recipe>{
     return this.http.put<Recipe>(`${this.recipeUrl}/${id}`, recipe);
   }
 
-  delete(id: string): Observable<void>{
+  delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.recipeUrl}/${id}`);
   }
 }

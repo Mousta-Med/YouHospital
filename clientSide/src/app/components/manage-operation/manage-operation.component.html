@@ -1,0 +1,76 @@
+<div [formGroup]="operationForm" class=" p-dialog-content">
+  <div class="flex flex-column gap-3 mt-3 ">
+    <div class="flex gap-3">
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base" for="name">Operation Date</label>
+        <span
+          class="p-input-icon-left w-full">
+          <i class="pi pi-user"></i>
+          <input class="p-inputtext p-component p-element w-full" formControlName="date" id="name"
+                [min]="minDate" type="date">
+        </span>
+      </div>
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base" for="familyName">Operation Time</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="time" id="familyName"
+               type="time">
+        </span>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base">Operation Cost $</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="cost"
+               placeholder="Cost in $" min="0" type="number">
+        </span>
+      </div>
+      <div class="w-full">
+        <label class="block mb-1 text-color text-base">Operation Duration</label>
+        <span
+          class="p-input-icon-left w-full">
+        <i class="pi pi-user"></i>
+        <input class="p-inputtext p-component p-element w-full" formControlName="duration"
+              placeholder="Duration in Hours" min="0" type="number">
+        </span>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <div class="w-full" >
+        <label class="block mb-1 text-color text-base">Patient</label>
+        <span
+          class="p-input-icon-left w-full">
+          <i class="pi pi-file"></i>
+          <select class="p-inputtext p-component p-element w-full" formControlName="patientId">
+            <option value="no">Select Option</option>
+            <option *ngFor="let patient of patients" [value]="patient?.id">{{patient?.firstName}} {{patient?.lastName}}</option>
+          </select>
+        </span>
+      </div>
+      <div class="w-full" >
+        <label class="block mb-1 text-color text-base">Staff</label>
+        <p-multiSelect appendTo="body" [options]="staffs" formControlName="staffsId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-multiSelect>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-dialog-footer">
+  <div class="flex gap-3 justify-content-end border-top-1 surface-border pt-5">
+    <button (click)="onCancel()" class="p-element p-ripple p-button-text p-button p-component">
+      <span
+        class="p-button-label">Cancel
+      </span>
+    </button>
+    <button (click)="onSubmit()" [disabled]="operationForm.invalid"
+            class="p-element p-ripple p-button-rounded p-button p-component">
+      <span
+        class="p-button-label">Submit
+      </span>
+    </button>
+  </div>
+</div>

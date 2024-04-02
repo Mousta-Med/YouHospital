@@ -27,11 +27,11 @@ export class DepartmentService {
   }
 
 
-  update(id: string, department: Department): Observable<Department>{
+  update(id: string | undefined, department: Department): Observable<Department>{
     return this.http.put<Department>(`${this.departmentUrl}/${id}`, department);
   }
 
-  delete(id: string): Observable<void>{
+  delete(id: string | undefined): Observable<void>{
     return this.http.delete<void>(`${this.departmentUrl}/${id}`);
   }
 }

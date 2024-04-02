@@ -47,12 +47,13 @@ public class JWTUtil {
         return resolver.apply(claims);
     }
 
-    public String generateToken(Person person) {
+    public String generateToken(Person person, String role) {
         return Jwts
                 .builder()
                 .subject(person.getEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
+                .claim("roles", role)
+                .expiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 2000))
                 .signWith(getSigningKey())
                 .compact();
     }

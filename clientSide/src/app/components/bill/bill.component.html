@@ -45,7 +45,7 @@
           </span>
           <span class="text-{{getSeverity(bill.status)}}-700 font-bold ml-2">{{ bill.patient?.firstName }} {{ bill.patient?.lastName }}</span>
         </div>
-        <p class="text-{{getSeverity(bill.status)}}-700 mt-2 mb-0">Due <span class="font-medium">10/09/2021</span></p></div>
+        <p class="text-{{getSeverity(bill.status)}}-700 mt-2 mb-0">Due <span class="font-medium">{{ bill.createdDate | date:'yyyy-MM-dd' }}</span></p></div>
       <div class="flex align-items-center justify-content-between md:justify-content-end mt-3 md:mt-0">
         <span class="bg-{{getSeverity(bill.status)}}-400 text-{{getSeverity(bill.status)}}-900 font-bold text-sm py-1 px-2" style="border-radius: 10px;">{{ bill.status }}</span>
         <div  class="text-right ml-3">
@@ -53,7 +53,7 @@
           <p class="mt-1 mb-0 text-{{getSeverity(bill.status)}}-700">EUR</p>
         </div>
 
-        <div>
+        <div class="flex flex-column">
           <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateBill(bill)"
                   class="p-button-rounded p-button-text"></button>
           <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteBill(bill)"

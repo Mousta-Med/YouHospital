@@ -42,8 +42,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         req -> req
                                 .requestMatchers(getOpenedResources()).permitAll()
-                                .requestMatchers("/api/v1/auth/**")
-                                .permitAll()
+                                .requestMatchers("/api/v1/staff").hasAnyAuthority("ADMIN","RECEPTIONIST","NURSE")
+                                .requestMatchers("/api/v1/auth/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
