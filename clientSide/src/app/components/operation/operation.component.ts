@@ -8,17 +8,18 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './operation.component.html',
   styleUrls: ['./operation.component.scss']
 })
-export class OperationComponent implements OnInit{
+export class OperationComponent implements OnInit {
 
   operations: Operation[] = [];
 
-  operation!: Operation ;
+  operation!: Operation;
 
   operationType: 'update' | 'create' = "create";
 
   title: string = '';
 
   visible: boolean = false;
+
   constructor(
     private operationService: OperationService,
     private messageService: MessageService,
@@ -106,14 +107,13 @@ export class OperationComponent implements OnInit{
               this.messageService.add({
                 severity: 'success', summary: 'Operation deleted', detail: `Operation was successfully deleted`
               });
-            },error:(err) =>{
+            }, error: (err) => {
               console.log(err);
             }
           });
       }
     });
   }
-
 
 
   updateOperation(updatedOperation: Operation) {

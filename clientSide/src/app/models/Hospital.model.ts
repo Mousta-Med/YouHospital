@@ -1,13 +1,13 @@
 import {Department} from "./Department.model";
 import {Auditable} from "./Auditable.model";
 
-export interface Hospital extends Auditable{
+export interface Hospital extends Auditable {
 
-   name: string;
+  name: string;
 
-   address: string;
+  address: string;
 
-   phone: string;
+  phone: string;
 
-   department?: Array<Department>;
+  department?: Array<Department>;
 }

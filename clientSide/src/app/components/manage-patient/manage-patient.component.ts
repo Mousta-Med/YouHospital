@@ -12,14 +12,14 @@ import {RoomService} from "../../services/room.service";
   templateUrl: './manage-patient.component.html',
   styleUrls: ['./manage-patient.component.scss']
 })
-export class ManagePatientComponent implements OnInit, OnChanges{
+export class ManagePatientComponent implements OnInit, OnChanges {
 
 
   departments: Department[] = [];
   rooms: Room[] = [];
 
   @Input()
-  patient: Patient =  {
+  patient: Patient = {
     dateOfBirth: "",
     patientType: "",
     roomId: "",
@@ -49,8 +49,8 @@ export class ManagePatientComponent implements OnInit, OnChanges{
     patientType: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     gender: new FormControl('no', [Validators.required, Validators.minLength(3)]),
-    departmentId: new FormControl('no', [Validators.required, Validators.minLength(3)] ),
-    roomId: new FormControl('no', [Validators.required, Validators.minLength(3)] ),
+    departmentId: new FormControl('no', [Validators.required, Validators.minLength(3)]),
+    roomId: new FormControl('no', [Validators.required, Validators.minLength(3)]),
     identityType: new FormControl('no', [Validators.required, Validators.minLength(3)]),
     identityCode: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
@@ -60,7 +60,7 @@ export class ManagePatientComponent implements OnInit, OnChanges{
     private router: Router,
     private departmentService: DepartmentService,
     private roomService: RoomService,
-    ) {
+  ) {
   }
 
   ngOnInit() {
@@ -78,7 +78,7 @@ export class ManagePatientComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
     this.patientForm.reset();
-    if(this.patient){
+    if (this.patient) {
       console.log(this.patient)
       this.patientForm.setValue({
         firstName: this.patient.firstName,

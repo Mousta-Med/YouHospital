@@ -8,17 +8,19 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.scss']
 })
-export class StaffComponent implements OnInit{
+export class StaffComponent implements OnInit {
 
   staffs: Staff[] = [];
 
-  staff!: Staff ;
+  staff!: Staff;
 
   operation: 'update' | 'create' = "create";
 
   title: string = '';
 
   visible: boolean = false;
+  searchQuery: string = '';
+
   constructor(
     private staffService: StaffService,
     private messageService: MessageService,
@@ -121,7 +123,6 @@ export class StaffComponent implements OnInit{
     };
   }
 
-
   deleteStaff(deletedStaff: Staff) {
     this.confirmationService.confirm({
       header: 'Delete Staff',
@@ -134,7 +135,7 @@ export class StaffComponent implements OnInit{
               this.messageService.add({
                 severity: 'success', summary: 'Staff deleted', detail: `Staff was successfully deleted`
               });
-            },error:(err) =>{
+            }, error: (err) => {
               console.log(err);
             }
           });
@@ -142,14 +143,13 @@ export class StaffComponent implements OnInit{
     });
   }
 
-  searchQuery: string = '';
   filterItems() {
-    if (this.searchQuery.trim() === ''){
+    if (this.searchQuery.trim() === '') {
       this.findAllStaff();
-    }else {
-    this.staffs = this.staffs.filter(item =>
-      item.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    } else {
+      this.staffs = this.staffs.filter(item =>
+        item.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     }
   }
 

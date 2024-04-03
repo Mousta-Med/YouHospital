@@ -1,8 +1,7 @@
-import {ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "primeng/api";
 import {SharedService} from "../../services/shared.service";
-import {StaffService} from "../../services/staff.service";
 
 @Component({
   selector: 'app-app-layout',
@@ -25,7 +24,7 @@ export class AppLayoutComponent implements OnInit {
       this.menus = menu;
       this.cdr.detectChanges();
     });
-    }
+  }
 
 
   logOut() {

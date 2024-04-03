@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Operation} from "../../models/Operation.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthenticationResponse} from "../../models/Authentication-response.model";
 import {Patient} from "../../models/Patient.model";
 import {PatientService} from "../../services/patient.service";
 import {Staff} from "../../models/Staff.model";

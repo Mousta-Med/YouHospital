@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Room} from "../../models/Room.model";
 import {RoomService} from "../../services/room.service";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -22,9 +22,9 @@ export class RoomComponent {
     private roomService: RoomService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-
   ) {
   }
+
   ngOnInit() {
     this.getAllRooms();
   }
@@ -33,16 +33,6 @@ export class RoomComponent {
     this.sidebarVisible = true;
     this.operation = 'create';
     this.room = {roomNum: 0, departmentId: '', roomType: 'SINGLE', location: ''};
-  }
-
-  private getAllRooms() {
-    this.roomService.findAll()
-      .subscribe({
-        next: (data) => {
-          this.rooms = data;
-        }
-      })
-    ;
   }
 
   save(room: Room) {
@@ -105,6 +95,16 @@ export class RoomComponent {
 
   cancel() {
     this.sidebarVisible = false;
+  }
+
+  private getAllRooms() {
+    this.roomService.findAll()
+      .subscribe({
+        next: (data) => {
+          this.rooms = data;
+        }
+      })
+    ;
   }
 
 }

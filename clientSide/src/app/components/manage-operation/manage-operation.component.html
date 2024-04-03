@@ -6,8 +6,8 @@
         <span
           class="p-input-icon-left w-full">
           <i class="pi pi-user"></i>
-          <input class="p-inputtext p-component p-element w-full" formControlName="date" id="name"
-                [min]="minDate | date: 'yyyy-MM-dd'" type="date">
+          <input [min]="minDate | date: 'yyyy-MM-dd'" class="p-inputtext p-component p-element w-full" formControlName="date"
+                 id="name" type="date">
         </span>
       </div>
       <div class="w-full">
@@ -27,7 +27,7 @@
           class="p-input-icon-left w-full">
         <i class="pi pi-user"></i>
         <input class="p-inputtext p-component p-element w-full" formControlName="cost"
-               placeholder="Cost in $" min="0" type="number">
+               min="0" placeholder="Cost in $" type="number">
         </span>
       </div>
       <div class="w-full">
@@ -36,25 +36,25 @@
           class="p-input-icon-left w-full">
         <i class="pi pi-user"></i>
         <input class="p-inputtext p-component p-element w-full" formControlName="duration"
-              placeholder="Duration in Hours" min="0" type="number">
+               min="0" placeholder="Duration in Hours" type="number">
         </span>
       </div>
     </div>
     <div class="flex gap-3">
-      <div class="w-full" >
+      <div class="w-full">
         <label class="block mb-1 text-color text-base">Patient</label>
         <span
           class="p-input-icon-left w-full">
           <i class="pi pi-file"></i>
           <select class="p-inputtext p-component p-element w-full" formControlName="patientId">
             <option value="no">Select Option</option>
-            <option *ngFor="let patient of patients" [value]="patient?.id">{{patient?.firstName}} {{patient?.lastName}}</option>
+            <option *ngFor="let patient of patients" [value]="patient?.id">{{ patient?.firstName }} {{ patient?.lastName }}</option>
           </select>
         </span>
       </div>
-      <div class="w-full" >
+      <div class="w-full">
         <label class="block mb-1 text-color text-base">Staff</label>
-        <p-dropdown styleClass="w-full" appendTo="body" [options]="staffs" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-dropdown>
+        <p-dropdown [options]="staffs" appendTo="body" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff" styleClass="w-full"></p-dropdown>
       </div>
     </div>
   </div>

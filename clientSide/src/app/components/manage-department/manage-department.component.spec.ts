@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ManageDepartmentComponent } from './manage-department.component';
+import {ManageDepartmentComponent} from './manage-department.component';
 
 describe('ManageDepartmentComponent', () => {
   let component: ManageDepartmentComponent;

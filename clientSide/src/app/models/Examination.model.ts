@@ -2,19 +2,19 @@ import {Patient} from "./Patient.model";
 import {Staff} from "./Staff.model";
 import {Auditable} from "./Auditable.model";
 
-export interface Examination extends Auditable{
+export interface Examination extends Auditable {
 
-    problem: string;
+  problem: string;
 
-    dateTime: string;
+  dateTime: string;
 
-    patientId: string;
+  patientId: string;
 
-    staffId: string;
+  staffId: string;
 
-    patientRes?: Patient;
+  patientRes?: Patient;
 
-    patient?: Patient;
+  patient?: Patient;
 
-    staff?: Staff;
+  staff?: Staff;
 }

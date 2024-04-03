@@ -17,11 +17,11 @@
     </a>
     <span class="p-input-icon-left"><i
       class="pi pi-search"></i>
-      <input [(ngModel)]="searchQuery" (input)="filterItems()" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
+      <input (input)="filterItems()" [(ngModel)]="searchQuery" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
              type="text"></span>
   </div>
   <div>
-    <p-button (onClick)="createStaff()" severity="success" size="small" label="Add" icon="pi pi-user-plus"></p-button>
+    <p-button (onClick)="createStaff()" icon="pi pi-user-plus" label="Add" severity="success" size="small"></p-button>
   </div>
 </div>
 <div class="p-5 flex flex-column flex-auto">

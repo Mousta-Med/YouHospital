@@ -22,9 +22,6 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable {
 
-    @Id
-    @GeneratedValue
-    private UUID id;
     @CreatedBy
     @Column(updatable = false)
     protected String createdBy;
@@ -37,5 +34,8 @@ public abstract class Auditable {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     protected LocalDateTime lastModifiedDate;
+    @Id
+    @GeneratedValue
+    private UUID id;
 
 }

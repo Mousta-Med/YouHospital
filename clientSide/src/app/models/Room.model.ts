@@ -2,7 +2,7 @@ import {Department} from "./Department.model";
 import {Patient} from "./Patient.model";
 import {Auditable} from "./Auditable.model";
 
-export interface Room extends Auditable{
+export interface Room extends Auditable {
 
   roomNum: number;
 

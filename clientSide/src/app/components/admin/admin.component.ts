@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {SharedService} from "../../services/shared.service";
 import {ActivatedRoute} from "@angular/router";
@@ -8,13 +8,14 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit{
+export class AdminComponent implements OnInit {
 
   menuItems: Array<MenuItem> = [
     {label: 'Home', icon: 'pi pi-home', routerLink: '/admin'},
     {label: 'Hospital', icon: 'pi pi-building', routerLink: '/admin/hospital'},
     {label: 'Staff', icon: 'pi pi-users', routerLink: '/admin/staff'},
   ];
+
   constructor(
     private sharedService: SharedService,
     private route: ActivatedRoute

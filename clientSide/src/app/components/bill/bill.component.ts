@@ -8,15 +8,15 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './bill.component.html',
   styleUrls: ['./bill.component.scss']
 })
-export class BillComponent implements OnInit{
+export class BillComponent implements OnInit {
 
   bills: Bill[] = [];
 
   bill: Bill = {
     status: 'UNPAID',
-  patientId: "",
-  amount:0
-};
+    patientId: "",
+    amount: 0
+  };
 
 
   operation: 'update' | 'create' = "create";
@@ -24,6 +24,7 @@ export class BillComponent implements OnInit{
   title: string = '';
 
   visible: boolean = false;
+
   constructor(
     private billService: BillService,
     private messageService: MessageService,
@@ -72,7 +73,7 @@ export class BillComponent implements OnInit{
               this.bill = {
                 status: 'UNPAID',
                 patientId: "",
-                amount:0
+                amount: 0
               };
             }, error: (err) => {
               console.log(err)
@@ -111,7 +112,7 @@ export class BillComponent implements OnInit{
     this.bill = {
       status: 'UNPAID',
       patientId: "",
-      amount:0
+      amount: 0
     };
   }
 
@@ -128,7 +129,7 @@ export class BillComponent implements OnInit{
               this.messageService.add({
                 severity: 'success', summary: 'Bill deleted', detail: `Bill was successfully deleted`
               });
-            },error:(err) =>{
+            }, error: (err) => {
               console.log(err);
             }
           });

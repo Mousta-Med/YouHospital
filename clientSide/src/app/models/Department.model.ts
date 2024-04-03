@@ -4,18 +4,18 @@ import {Room} from "./Room.model";
 import {Hospital} from "./Hospital.model";
 import {Auditable} from "./Auditable.model";
 
-export interface Department extends Auditable{
+export interface Department extends Auditable {
 
-    name: string;
+  name: string;
 
-    hospitalId: string;
+  hospitalId: string;
 
-    hospital?: Hospital;
+  hospital?: Hospital;
 
-    staffs?: Array<Staff>;
+  staffs?: Array<Staff>;
 
-    patients?: Array<Patient>;
+  patients?: Array<Patient>;
 
-    rooms?: Array<Room>;
+  rooms?: Array<Room>;
 
 }

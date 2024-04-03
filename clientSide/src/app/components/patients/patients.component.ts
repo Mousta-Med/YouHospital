@@ -8,17 +8,19 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.scss']
 })
-export class PatientsComponent implements OnInit{
+export class PatientsComponent implements OnInit {
 
   patients: Patient[] = [];
 
-  patient!: Patient ;
+  patient!: Patient;
 
   operation: 'update' | 'create' = "create";
 
   title: string = '';
 
   visible: boolean = false;
+  searchQuery: string = '';
+
   constructor(
     private patientService: PatientService,
     private messageService: MessageService,
@@ -115,7 +117,6 @@ export class PatientsComponent implements OnInit{
     };
   }
 
-
   deletePatient(deletedPatient: Patient) {
     this.confirmationService.confirm({
       header: 'Delete Patient',
@@ -128,7 +129,7 @@ export class PatientsComponent implements OnInit{
               this.messageService.add({
                 severity: 'success', summary: 'Patient deleted', detail: `Patient was successfully deleted`
               });
-            },error:(err) =>{
+            }, error: (err) => {
               console.log(err);
             }
           });
@@ -136,11 +137,10 @@ export class PatientsComponent implements OnInit{
     });
   }
 
-  searchQuery: string = '';
   filterItems() {
-    if (this.searchQuery.trim() === ''){
+    if (this.searchQuery.trim() === '') {
       this.findAllPatient();
-    }else {
+    } else {
       this.patients = this.patients.filter(item =>
         item.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
       );

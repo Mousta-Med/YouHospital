@@ -1,6 +1,6 @@
 import {Auditable} from "./Auditable.model";
 
-export interface Person extends Auditable{
+export interface Person extends Auditable {
 
   firstName: string;
 

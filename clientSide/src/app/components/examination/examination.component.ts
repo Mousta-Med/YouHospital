@@ -8,11 +8,11 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './examination.component.html',
   styleUrls: ['./examination.component.scss']
 })
-export class ExaminationComponent implements  OnInit{
+export class ExaminationComponent implements OnInit {
 
   examinations: Examination[] = []
 
-  examination : Examination = {dateTime: "", patientId: "", problem: "", staffId: ''};
+  examination: Examination = {dateTime: "", patientId: "", problem: "", staffId: ''};
 
   sidebarVisible: boolean = false;
 
@@ -24,12 +24,14 @@ export class ExaminationComponent implements  OnInit{
     private messageService: MessageService
   ) {
   }
-    ngOnInit(): void {
+
+  ngOnInit(): void {
     this.findAllExaminations();
-    }
-  findAllExaminations(){
+  }
+
+  findAllExaminations() {
     this.examinationService.findAll().subscribe({
-      next:(data)=>{
+      next: (data) => {
         this.examinations = data
       }
     })
@@ -39,16 +41,6 @@ export class ExaminationComponent implements  OnInit{
     this.sidebarVisible = true;
     this.operation = 'create';
     this.examination = {dateTime: "", patientId: "", problem: "", staffId: ''};
-  }
-
-  private getAllExaminations() {
-    this.examinationService.findAll()
-      .subscribe({
-        next: (data) => {
-          this.examinations = data;
-        }
-      })
-    ;
   }
 
   save(examination: Examination) {
@@ -65,7 +57,7 @@ export class ExaminationComponent implements  OnInit{
               });
               this.examination = {dateTime: "", patientId: "", problem: "", staffId: ''};
             },
-            error: (err)=>{
+            error: (err) => {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
@@ -118,6 +110,16 @@ export class ExaminationComponent implements  OnInit{
 
   cancel() {
     this.sidebarVisible = false;
+  }
+
+  private getAllExaminations() {
+    this.examinationService.findAll()
+      .subscribe({
+        next: (data) => {
+          this.examinations = data;
+        }
+      })
+    ;
   }
 }
 

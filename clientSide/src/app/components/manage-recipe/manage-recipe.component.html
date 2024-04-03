@@ -6,8 +6,8 @@
         <span
           class="p-input-icon-left w-full">
           <i class="pi pi-user"></i>
-          <input class="p-inputtext p-component p-element w-full" formControlName="startDate" id="name"
-                 [min]="minDate | date:'yyyy-MM-dd'" type="date">
+          <input [min]="minDate | date:'yyyy-MM-dd'" class="p-inputtext p-component p-element w-full" formControlName="startDate"
+                 id="name" type="date">
         </span>
       </div>
       <div class="w-full">
@@ -15,8 +15,8 @@
         <span
           class="p-input-icon-left w-full">
         <i class="pi pi-user"></i>
-        <input class="p-inputtext p-component p-element w-full" formControlName="endDate" id="familyName"
-               [min]="endDate | date:'yyyy-MM-dd'" type="date">
+        <input [min]="endDate | date:'yyyy-MM-dd'" class="p-inputtext p-component p-element w-full" formControlName="endDate"
+               id="familyName" type="date">
         </span>
       </div>
     </div>
@@ -36,18 +36,18 @@
           class="p-input-icon-left w-full">
         <i class="pi pi-user"></i>
         <input class="p-inputtext p-component p-element w-full" formControlName="instructions"
-               placeholder="Instructions"  type="text">
+               placeholder="Instructions" type="text">
         </span>
       </div>
     </div>
     <div class="flex gap-3">
-      <div class="w-full" >
+      <div class="w-full">
         <label class="block mb-1 text-color text-base">Patient</label>
-        <p-dropdown styleClass="w-full" dropdownIcon="pi pi-user-plus" appendTo="body" [options]="patients" formControlName="patientId" optionLabel="lastName" optionValue="id" placeholder="Select Patient"></p-dropdown>
+        <p-dropdown [options]="patients" appendTo="body" dropdownIcon="pi pi-user-plus" formControlName="patientId" optionLabel="lastName" optionValue="id" placeholder="Select Patient" styleClass="w-full"></p-dropdown>
       </div>
-      <div class="w-full" >
+      <div class="w-full">
         <label class="block mb-1 text-color text-base">Staff</label>
-        <p-dropdown styleClass="w-full" dropdownIcon="pi pi-user-plus" appendTo="body" [options]="staffs" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-dropdown>
+        <p-dropdown [options]="staffs" appendTo="body" dropdownIcon="pi pi-user-plus" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff" styleClass="w-full"></p-dropdown>
       </div>
     </div>
   </div>

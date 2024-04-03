@@ -49,12 +49,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     @Override
-    public AuthenticationRes register(PatientReq patientReq){
+    public AuthenticationRes register(PatientReq patientReq) {
         Patient patient = modelMapper.map(patientReq, Patient.class);
         patient.setPass(passwordEncoder.encode(patientReq.getPass()));
         patient = patientRepository.save(patient);
         String token = jwtUtil.generateToken(patient, "PATIENT");
-         return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(new PatientRes()));
+        return new AuthenticationRes(token, "PATIENT", Optional.empty(), Optional.empty(), Optional.of(new PatientRes()));
     }
 
     @Override
@@ -71,12 +71,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Optional<Staff> staff = staffRepository.findByEmail(authenticationReq.getEmail());
 
         if (admin.isPresent()) {
-            token = jwtUtil.generateToken(admin.get(),"ADMIN");
-            return new AuthenticationRes(token, "ADMIN",Optional.empty(),Optional.of( modelMapper.map(admin, AdminRes.class)), Optional.empty());
+            token = jwtUtil.generateToken(admin.get(), "ADMIN");
+            return new AuthenticationRes(token, "ADMIN", Optional.empty(), Optional.of(modelMapper.map(admin, AdminRes.class)), Optional.empty());
         }
         if (patient.isPresent()) {
             token = jwtUtil.generateToken(patient.get(), "PATIENT");
-            return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientRes.class)));
+            return new AuthenticationRes(token, "PATIENT", Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientRes.class)));
         }
         if (staff.isPresent()) {
             token = jwtUtil.generateToken(staff.get(), staff.get().getRole().name());
@@ -93,7 +93,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             }
             staffRes.setExaminations(examinationsReq);
             staffRes.setOperations(operationsReq);
-            return new AuthenticationRes(token, staff.get().getRole().name(),Optional.of(staffRes),Optional.empty(),Optional.empty());
+            return new AuthenticationRes(token, staff.get().getRole().name(), Optional.of(staffRes), Optional.empty(), Optional.empty());
         }
 
         throw new UsernameNotFoundException("User Not Found With This Email: " + authenticationReq.getEmail());

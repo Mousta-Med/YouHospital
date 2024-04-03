@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthenticationResponse} from "../models/Authentication-response.model";
 import {AuthenticationRequest} from "../models/Authentication-request.model";
@@ -16,9 +16,10 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
-  login(authRequest: AuthenticationRequest): Observable<AuthenticationResponse>{
+  login(authRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(this.loginUrl, authRequest);
   }
 

@@ -1,6 +1,8 @@
 <div class="">
   <div style="height: 500px; background: url('https://img.freepik.com/free-photo/modern-hospital-with-clear-walls_1203-1539.jpg?w=1380&t=st=1711810400~exp=1711811000~hmac=704c28bb9f445a7a9fb8378a88a3fc79e903448183b45057fd755d6845c2b895') no-repeat; background-position: center; background-size: cover;"></div>
-  <div class="text-cyan-600 text-7xl font-light text mb-3 relative" style="margin-top: -10rem; top: -180px;  margin-left: 35%">Welcome Back.</div>
+  <div class="text-cyan-600 text-7xl font-light text mb-3 relative" style="margin-top: -10rem; top: -180px;  margin-left: 35%">
+    Welcome Back.
+  </div>
   <div class="px-4 py-5 md:px-6 lg:px-8 surface-section">
     <div
       class="flex flex-column lg:flex-row lg:align-items-center lg:justify-content-between relative"
@@ -9,12 +11,13 @@
         <div
           class="mb-3 surface-card shadow-2 flex align-items-center justify-content-center"
           style="width: 140px; height: 140px; border-radius: 10px;">
-          <img alt="Image" height="70" src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" width="70"></div>
-        <div class="text-900 text-3xl font-medium mb-3">{{person.firstName}} {{person.lastName}}
+          <img alt="Image" height="70" src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" width="70">
         </div>
-        <p class="mt-0 mb-3 text-700 text-xl">{{person.email}}</p>
+        <div class="text-900 text-3xl font-medium mb-3">{{ person.firstName }} {{ person.lastName }}
+        </div>
+        <p class="mt-0 mb-3 text-700 text-xl">{{ person.email }}</p>
         <div class="text-600 font-medium">
-          <span>{{person.phone}}</span>
+          <span>{{ person.phone }}</span>
         </div>
       </div>
     </div>

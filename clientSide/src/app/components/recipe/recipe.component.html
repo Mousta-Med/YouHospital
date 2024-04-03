@@ -12,31 +12,31 @@
   <p-button (onClick)="createRecipe()" icon="" label="Add Recipe" severity="success" size="small"
             styleClass="mb-3"></p-button>
   <div class="grid mt-4 ml-0">
-    <div  *ngFor="let recipe of recipes" class="surface-card col-12 lg:col-4 p-4 border-cyan-300 border-1 border-round">
-      <div  class="border-top-3 border-blue-600"></div>
+    <div *ngFor="let recipe of recipes" class="surface-card col-12 lg:col-4 p-4 border-cyan-300 border-1 border-round">
+      <div class="border-top-3 border-blue-600"></div>
       <div class="flex justify-content-between">
-      <div  class="text-blue-600 font-medium my-2">Doctor: {{recipe.staff?.lastName}}</div>
+        <div class="text-blue-600 font-medium my-2">Doctor: {{ recipe.staff?.lastName }}</div>
         <div class="">
-          <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateRecipe(recipe)"
-                  class="p-button-rounded p-button-text"></button>
-          <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteRecipe(recipe)"
-                  class="p-button-rounded p-button-danger p-button-text"></button>
+          <button (click)="updateRecipe(recipe)" class="p-button-rounded p-button-text" icon="pi pi-pencil" pButton pRipple
+                  type="button"></button>
+          <button (click)="deleteRecipe(recipe)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-trash" pButton pRipple
+                  type="button"></button>
         </div>
       </div>
-      <div  class="text-900 font-medium text-xl line-height-3 mb-4">
-        {{recipe.instructions}}
+      <div class="text-900 font-medium text-xl line-height-3 mb-4">
+        {{ recipe.instructions }}
       </div>
-      <div  class="text-700 line-height-3">
-        {{recipe.medications}}
+      <div class="text-700 line-height-3">
+        {{ recipe.medications }}
       </div>
-      <div  class="flex align-items-center mt-4">
+      <div class="flex align-items-center mt-4">
         <p-avatar class="p-element" image="assets/images/patient.png" shape="circle">
-          <div  class="p-avatar p-component p-avatar-image p-avatar-circle">
+          <div class="p-avatar p-component p-avatar-image p-avatar-circle">
             <img class="ng-star-inserted" src="assets/images/patient.png">
           </div>
         </p-avatar>
         <div class="ml-2">
-          <div class="text-sm font-bold text-900 mb-1">{{recipe.patient?.firstName}} {{recipe.patient?.lastName}}</div>
+          <div class="text-sm font-bold text-900 mb-1">{{ recipe.patient?.firstName }} {{ recipe.patient?.lastName }}</div>
         </div>
       </div>
     </div>

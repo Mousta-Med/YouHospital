@@ -1,43 +1,44 @@
 <p-sidebar [(visible)]="visible" [position]="'right'" [styleClass]="'p-sidebar-md'"
            [transitionOptions]="'300ms cubic-bezier(0,0,0.2,1)'">
   <app-manage-bill
-    [operation]="operation"
-    [bill]="bill"
-    (submit)="save($event)"
     (cancel)="cancel()"
+    (submit)="save($event)"
+    [bill]="bill"
+    [operation]="operation"
   ></app-manage-bill>
 </p-sidebar>
-<div  class="h-full lg:px-8 md:px-6 px-4 py-8 surface-ground">
+<div class="h-full lg:px-8 md:px-6 px-4 py-8 surface-ground">
   <div class="font-bold text-5xl text-900 mb-3">Bills</div>
   <div class="text-700 text-xl line-height-3 mb-5">List Of All Bills.</div>
-  <div  class="flex justify-content-between align-items-center mb-5">
-    <p-button (onClick)="createBill()" severity="success" size="small" label="Add Bill"></p-button>
+  <div class="flex justify-content-between align-items-center mb-5">
+    <p-button (onClick)="createBill()" label="Add Bill" severity="success" size="small"></p-button>
   </div>
   <ul class="list-none p-0 m-0">
     <li *ngFor="let bill of bills"
-      class="flex flex-column md:flex-row md:align-items-center md:justify-content-between p-3 border-1 mb-3 bg-{{getSeverity(bill.status)}}-50 border-{{getSeverity(bill.status)}}-500"
-      style="border-radius: 10px;">
+        class="flex flex-column md:flex-row md:align-items-center md:justify-content-between p-3 border-1 mb-3 bg-{{getSeverity(bill.status)}}-50 border-{{getSeverity(bill.status)}}-500"
+        style="border-radius: 10px;">
       <div>
         <div>
           <span
-          class="inline-flex justify-content-center align-items-center w-2rem h-2rem border-circle border-1 border-{{getSeverity(bill.status)}}-200"><i
-          class="pi pi-file text-{{getSeverity(bill.status)}}-700"></i>
+            class="inline-flex justify-content-center align-items-center w-2rem h-2rem border-circle border-1 border-{{getSeverity(bill.status)}}-200"><i
+            class="pi pi-file text-{{getSeverity(bill.status)}}-700"></i>
           </span>
           <span class="text-{{getSeverity(bill.status)}}-700 font-bold ml-2">{{ bill.patient?.firstName }} {{ bill.patient?.lastName }}</span>
         </div>
-        <p class="text-{{getSeverity(bill.status)}}-700 mt-2 mb-0">Due <span class="font-medium">{{ bill.createdDate | date:'yyyy-MM-dd' }}</span></p></div>
+        <p class="text-{{getSeverity(bill.status)}}-700 mt-2 mb-0">Due
+          <span class="font-medium">{{ bill.createdDate | date:'yyyy-MM-dd' }}</span></p></div>
       <div class="flex align-items-center justify-content-between md:justify-content-end mt-3 md:mt-0">
         <span class="bg-{{getSeverity(bill.status)}}-400 text-{{getSeverity(bill.status)}}-900 font-bold text-sm py-1 px-2" style="border-radius: 10px;">{{ bill.status }}</span>
-        <div  class="text-right ml-3">
+        <div class="text-right ml-3">
           <span class="text-{{getSeverity(bill.status)}}-700 font-bold">{{ bill.amount }}</span>
           <p class="mt-1 mb-0 text-{{getSeverity(bill.status)}}-700">EUR</p>
         </div>
 
         <div class="flex flex-column">
-          <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateBill(bill)"
-                  class="p-button-rounded p-button-text"></button>
-          <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteBill(bill)"
-                  class="p-button-rounded p-button-danger p-button-text"></button>
+          <button (click)="updateBill(bill)" class="p-button-rounded p-button-text" icon="pi pi-pencil" pButton pRipple
+                  type="button"></button>
+          <button (click)="deleteBill(bill)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-trash" pButton pRipple
+                  type="button"></button>
         </div>
       </div>
     </li>

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Department} from "../../models/Department.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SharedService} from "../../services/shared.service";
 import {Hospital} from "../../models/Hospital.model";
 
 @Component({
@@ -32,8 +31,7 @@ export class ManageDepartmentComponent implements OnInit, OnChanges {
     hospitalId: new FormControl('00000000-0000-0064-0000-000000000064'),
   });
 
-  constructor(
-  ) {
+  constructor() {
   }
 
 

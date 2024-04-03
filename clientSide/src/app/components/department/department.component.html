@@ -1,9 +1,9 @@
 <div>
-  <p-button (onClick)="createDepartment()" severity="success" size="small" label="Add Department"></p-button>
+  <p-button (onClick)="createDepartment()" label="Add Department" severity="success" size="small"></p-button>
 </div>
 <div class="p-3">
   <div class="mt-3">
-    <p-table [value]="departments" [tableStyle]="{ 'min-width': '40rem' }">
+    <p-table [tableStyle]="{ 'min-width': '40rem' }" [value]="departments">
       <ng-template pTemplate="header">
         <tr>
           <th>Department</th>
@@ -14,10 +14,10 @@
         <tr>
           <td>{{ department.name }}</td>
           <td class="-m-3">
-            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateDepartment(department)"
-                    class="p-button-rounded p-button-text"></button>
-            <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteDepartment(department)"
-                    class="p-button-rounded p-button-danger p-button-text"></button>
+            <button (click)="updateDepartment(department)" class="p-button-rounded p-button-text" icon="pi pi-pencil" pButton pRipple
+                    type="button"></button>
+            <button (click)="deleteDepartment(department)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-trash" pButton pRipple
+                    type="button"></button>
           </td>
         </tr>
       </ng-template>
@@ -27,9 +27,9 @@
 <p-sidebar [(visible)]="sidebarVisible" [position]="'right'" [styleClass]="'p-sidebar-md'"
            [transitionOptions]="'300ms cubic-bezier(0,0,0.2,1)'">
   <app-manage-department
-    [operation]="operation"
-    [department]="department"
-    (submit)="save($event)"
     (cancel)="cancel()"
+    (submit)="save($event)"
+    [department]="department"
+    [operation]="operation"
   ></app-manage-department>
 </p-sidebar>

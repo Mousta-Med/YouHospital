@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SharedService} from "../../services/shared.service";
 import {Hospital} from "../../models/Hospital.model";
 import {HospitalService} from "../../services/hospital.service";
-import {Department} from "../../models/Department.model";
-import {DepartmentService} from "../../services/department.service";
-import {ConfirmationService, MessageService} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -12,9 +9,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './hospital.component.html',
   styleUrls: ['./hospital.component.scss']
 })
-export class HospitalComponent implements OnInit{
+export class HospitalComponent implements OnInit {
 
-  hospital: Hospital = {name: '', address: '', phone:''}
+  hospital: Hospital = {name: '', address: '', phone: ''}
 
   hospitalForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -28,9 +25,9 @@ export class HospitalComponent implements OnInit{
   ) {
   }
 
-  getHospital(){
+  getHospital() {
     this.hospitalService.find('00000000-0000-0064-0000-000000000064').subscribe({
-      next:(data: Hospital) => {
+      next: (data: Hospital) => {
         this.hospital = data;
         this.hospitalForm.setValue({
           name: this.hospital.name,
@@ -40,6 +37,7 @@ export class HospitalComponent implements OnInit{
       }
     })
   }
+
   ngOnInit() {
     this.getHospital();
   }
@@ -47,7 +45,7 @@ export class HospitalComponent implements OnInit{
 
   updateHospital() {
     this.hospitalService.update('00000000-0000-0064-0000-000000000064', this.hospitalForm.value).subscribe({
-      next: (data) =>{
+      next: (data) => {
         this.getHospital();
         this.messageService.add({
           severity: 'success',

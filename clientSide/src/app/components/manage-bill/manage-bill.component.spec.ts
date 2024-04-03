@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ManageBillComponent } from './manage-bill.component';
+import {ManageBillComponent} from './manage-bill.component';
 
 describe('ManageBillComponent', () => {
   let component: ManageBillComponent;

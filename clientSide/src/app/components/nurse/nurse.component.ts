@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {SharedService} from "../../services/shared.service";
 import {ActivatedRoute} from "@angular/router";

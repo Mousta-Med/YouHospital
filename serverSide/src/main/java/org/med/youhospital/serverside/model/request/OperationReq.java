@@ -24,7 +24,7 @@ public class OperationReq {
     @NotNull(message = "Date Should Not Be Null")
     private LocalDate date;
 
-//    @FutureOrPresent(message = "time Should Be Present or future")
+    //    @FutureOrPresent(message = "time Should Be Present or future")
     @NotNull(message = "time Should Not Be Null")
     private LocalTime time;
 

@@ -1,40 +1,40 @@
 <div class="lg:px-8 md:px-6 px-4 py-8 surface-ground">
   <div class="font-bold text-5xl text-900 mb-3">Examinations</div>
   <div class="text-700 text-xl line-height-3 mb-5">List Of All Examinations.</div>
-<p-button styleClass="mb-4" (onClick)="createExamination()" severity="success" size="small" label="Add Examination"></p-button>
-<p-table [value]="examinations" [tableStyle]="{ 'min-width': '50rem' }">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Problem</th>
-      <th>Date & Time</th>
-      <th>Patient</th>
-      <th>Doctor</th>
-      <th>Actions</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-examination>
-    <tr>
-      <td>{{ examination.problem }}</td>
-      <td>{{ examination.dateTime }}</td>
-      <td>{{ examination.patient.firstName }} {{ examination?.patient.lastName }}</td>
-      <td>{{ examination.staff.lastName }}</td>
-      <td class="-m-3">
-        <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateExamination(examination)"
-                class="p-button-rounded p-button-text"></button>
-        <button pButton pRipple type="button" icon="pi pi-trash" (click)="deleteExamination(examination)"
-                class="p-button-rounded p-button-danger p-button-text"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+  <p-button (onClick)="createExamination()" label="Add Examination" severity="success" size="small" styleClass="mb-4"></p-button>
+  <p-table [tableStyle]="{ 'min-width': '50rem' }" [value]="examinations">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Problem</th>
+        <th>Date & Time</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template let-examination pTemplate="body">
+      <tr>
+        <td>{{ examination.problem }}</td>
+        <td>{{ examination.dateTime }}</td>
+        <td>{{ examination.patient.firstName }} {{ examination?.patient.lastName }}</td>
+        <td>{{ examination.staff.lastName }}</td>
+        <td class="-m-3">
+          <button (click)="updateExamination(examination)" class="p-button-rounded p-button-text" icon="pi pi-pencil" pButton pRipple
+                  type="button"></button>
+          <button (click)="deleteExamination(examination)" class="p-button-rounded p-button-danger p-button-text" icon="pi pi-trash" pButton pRipple
+                  type="button"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 
-<p-sidebar [(visible)]="sidebarVisible" [position]="'right'" [styleClass]="'p-sidebar-md'"
-           [transitionOptions]="'300ms cubic-bezier(0,0,0.2,1)'">
-  <app-manage-examination
-    [operation]="operation"
-    [examination]="examination"
-    (submit)="save($event)"
-    (cancel)="cancel()"
-  ></app-manage-examination>
-</p-sidebar>
+  <p-sidebar [(visible)]="sidebarVisible" [position]="'right'" [styleClass]="'p-sidebar-md'"
+             [transitionOptions]="'300ms cubic-bezier(0,0,0.2,1)'">
+    <app-manage-examination
+      (cancel)="cancel()"
+      (submit)="save($event)"
+      [examination]="examination"
+      [operation]="operation"
+    ></app-manage-examination>
+  </p-sidebar>
 </div>

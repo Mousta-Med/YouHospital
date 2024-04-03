@@ -1,15 +1,15 @@
 import {Patient} from "./Patient.model";
 import {Auditable} from "./Auditable.model";
 
-export interface Bill extends Auditable{
+export interface Bill extends Auditable {
 
-    amount: number;
+  amount: number;
 
-    patientId: string;
+  patientId: string;
 
 
-   status: 'PENDING'|'UNPAID'|'PAID';
+  status: 'PENDING' | 'UNPAID' | 'PAID';
 
-    patient?: Patient;
+  patient?: Patient;
 
 }

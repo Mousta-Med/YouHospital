@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {MenuItem} from "primeng/api";
 import {Hospital} from "../models/Hospital.model";
@@ -19,6 +19,7 @@ export class SharedService {
   getMenu(): Observable<Array<MenuItem>> {
     return this.menuSubject.asObservable();
   }
+
   setHospital(hospital: Hospital) {
     this.hospitalSubject.next(hospital);
   }

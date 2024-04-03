@@ -23,14 +23,14 @@
           </select>
         </span>
     </div>
-    <div class="w-full" >
+    <div class="w-full">
       <label class="block mb-1 text-color text-base">Patient</label>
       <span
         class="p-input-icon-left w-full">
           <i class="pi pi-file"></i>
           <select class="p-inputtext p-component p-element w-full" formControlName="patientId">
             <option value="no">Select Option</option>
-            <option *ngFor="let patient of patients" [value]="patient?.id">{{patient?.firstName}} {{patient?.lastName}}</option>
+            <option *ngFor="let patient of patients" [value]="patient?.id">{{ patient?.firstName }} {{ patient?.lastName }}</option>
           </select>
         </span>
     </div>
@@ -40,16 +40,16 @@
   <button
     (click)="onSubmit()"
     [disabled]="billForm.invalid"
-    pButton
-    label="Submit"
     class="w-full"
+    label="Submit"
+    pButton
   >
   </button>
   <button
     (click)="onCancel()"
-    pButton
-    label="Cancel"
     class="w-full p-button-outlined p-button-danger mt-2"
+    label="Cancel"
+    pButton
   >
   </button>
 </div>

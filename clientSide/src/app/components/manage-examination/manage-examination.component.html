@@ -11,33 +11,33 @@
         </span>
     </div>
     <div class="w-full">
-      <label class="block mb-1 text-color text-base" >Date & Time</label>
+      <label class="block mb-1 text-color text-base">Date & Time</label>
       <span
         class="p-input-icon-left w-full">
           <i class="pi pi-calendar-times"></i>
-          <input class="p-inputtext p-component p-element w-full" formControlName="dateTime" id="dateTime"
-                 [min]="minDate" type="datetime-local">
+          <input [min]="minDate" class="p-inputtext p-component p-element w-full" formControlName="dateTime"
+                 id="dateTime" type="datetime-local">
         </span>
     </div>
-    <div class="w-full" >
+    <div class="w-full">
       <label class="block mb-1 text-color text-base">Patient</label>
       <span
         class="p-input-icon-left w-full">
           <i class="pi pi-file"></i>
           <select class="p-inputtext p-component p-element w-full" formControlName="patientId">
             <option value="no">Select Option</option>
-            <option *ngFor="let patient of patients" [value]="patient?.id">{{patient?.firstName}} {{patient?.lastName}}</option>
+            <option *ngFor="let patient of patients" [value]="patient?.id">{{ patient?.firstName }} {{ patient?.lastName }}</option>
           </select>
         </span>
     </div>
-    <div class="w-full" >
+    <div class="w-full">
       <label class="block mb-1 text-color text-base">Doctor</label>
       <span
         class="p-input-icon-left w-full">
           <i class="pi pi-file"></i>
           <select class="p-inputtext p-component p-element w-full" formControlName="staffId">
             <option value="no">Select Option</option>
-            <option *ngFor="let staff of staffs" [value]="staff?.id">{{staff?.lastName}}</option>
+            <option *ngFor="let staff of staffs" [value]="staff?.id">{{ staff?.lastName }}</option>
           </select>
         </span>
     </div>
@@ -47,16 +47,16 @@
   <button
     (click)="onSubmit()"
     [disabled]="examinationForm.invalid"
-    pButton
-    label="Submit"
     class="w-full"
+    label="Submit"
+    pButton
   >
   </button>
   <button
     (click)="onCancel()"
-    pButton
-    label="Cancel"
     class="w-full p-button-outlined p-button-danger mt-2"
+    label="Cancel"
+    pButton
   >
   </button>
 </div>

@@ -40,7 +40,7 @@ export class ManageStaffComponent implements OnInit, OnChanges {
   @Output()
   cancel: EventEmitter<void> = new EventEmitter<void>();
 
-  adminId : string | undefined = '';
+  adminId: string | undefined = '';
 
   staffForm: FormGroup = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -52,7 +52,7 @@ export class ManageStaffComponent implements OnInit, OnChanges {
     specialization: new FormControl('', [Validators.required]),
     role: new FormControl('no', [Validators.required, Validators.minLength(3)]),
     gender: new FormControl('no', [Validators.required, Validators.minLength(3)]),
-    departmentId: new FormControl('no', [Validators.required, Validators.minLength(3)] ),
+    departmentId: new FormControl('no', [Validators.required, Validators.minLength(3)]),
     identityType: new FormControl('no', [Validators.required, Validators.minLength(3)]),
     identityCode: new FormControl('', [Validators.required]),
     recruitmentDate: new FormControl('', [Validators.required]),

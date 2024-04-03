@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Hospital} from "../../models/Hospital.model";
 import {Examination} from "../../models/Examination.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Staff} from "../../models/Staff.model";
@@ -12,7 +11,7 @@ import {PatientService} from "../../services/patient.service";
   templateUrl: './manage-examination.component.html',
   styleUrls: ['./manage-examination.component.scss']
 })
-export class ManageExaminationComponent implements OnInit, OnChanges{
+export class ManageExaminationComponent implements OnInit, OnChanges {
 
   title = '';
 
@@ -43,7 +42,7 @@ export class ManageExaminationComponent implements OnInit, OnChanges{
 
   constructor(
     private staffService: StaffService,
-    private patientService : PatientService,
+    private patientService: PatientService,
   ) {
     const today = new Date();
     this.minDate = today.toISOString().slice(0, 16);
@@ -55,17 +54,17 @@ export class ManageExaminationComponent implements OnInit, OnChanges{
     this.getAllStaff();
   }
 
-  getAllPatients(){
+  getAllPatients() {
     this.patientService.findAll().subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.patients = data;
       }
     })
   }
 
-  getAllStaff(){
+  getAllStaff() {
     this.staffService.findAll().subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.staffs = data.filter(staff => staff.role === 'DOCTOR');
       }
     })

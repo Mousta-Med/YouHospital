@@ -1,23 +1,23 @@
 <div class="flex" style="min-height: 100vh">
   <div [formGroup]="loginForm"
-    class="surface-section w-full md:w-6 p-6 md:p-8 flex justify-content-center align-items-center flex-column w-full">
+       class="surface-section w-full md:w-6 p-6 md:p-8 flex justify-content-center align-items-center flex-column w-full">
     <div class="w-full">
       <div class="mb-5">
         <div class="text-900 text-3xl font-medium mb-3 text-center">Welcome Back</div>
       </div>
       <p-message *ngIf="errMsg" [text]="errMsg" severity="error" styleClass="mb-2 w-full"></p-message>
       <div><label class="block text-900 font-medium mb-2" for="email2">Email</label><input
-        formControlName="email"
-        class="p-inputtext p-component p-element w-full mb-3 p-3" id="email2"
+        class="p-inputtext p-component p-element w-full mb-3 p-3"
+        formControlName="email" id="email2"
         placeholder="Email"
         type="email"><label class="block text-900 font-medium mb-2"
-                           for="password2">Password</label><input
-        formControlName="password"
-        class="p-inputtext p-component p-element w-full mb-3 p-3" id="password2" placeholder="Password"
+                            for="password2">Password</label><input
+        class="p-inputtext p-component p-element w-full mb-3 p-3"
+        formControlName="password" id="password2" placeholder="Password"
         type="password">
         <button (click)="login()"
-                class="p-element p-ripple w-full p-3 p-button p-component"
                 [disabled]="loginForm.invalid"
+                class="p-element p-ripple w-full p-3 p-button p-component"
         ><span
           aria-hidden="true" class="p-button-icon p-button-icon-left pi pi-user"></span><span
           class="p-button-label">LOG-IN</span><span class="p-ink"></span></button>

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ManageOperationComponent } from './manage-operation.component';
+import {ManageOperationComponent} from './manage-operation.component';
 
 describe('ManageOperationComponent', () => {
   let component: ManageOperationComponent;

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {StaffService} from "../../services/staff.service";
 import {SharedService} from "../../services/shared.service";
 import {ActivatedRoute} from "@angular/router";
 import {MenuItem} from "primeng/api";
@@ -9,7 +8,7 @@ import {MenuItem} from "primeng/api";
   templateUrl: './receptionist.component.html',
   styleUrls: ['./receptionist.component.scss']
 })
-export class ReceptionistComponent implements  OnInit{
+export class ReceptionistComponent implements OnInit {
 
   menuItems: Array<MenuItem> = [
     {label: 'Home', icon: 'pi pi-home', routerLink: '/receptionist'},

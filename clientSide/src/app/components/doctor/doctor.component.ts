@@ -1,12 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Staff} from "../../models/Staff.model";
-import {OperationService} from "../../services/operation.service";
-import {RecipeService} from "../../services/recipe.service";
-import {ExaminationService} from "../../services/examination.service";
-import {Patient} from "../../models/Patient.model";
-import {Recipe} from "../../models/Recipe.model";
-import {Operation} from "../../models/Operation.model";
-import {Examination} from "../../models/Examination.model";
 
 @Component({
   selector: 'app-doctor',
@@ -33,8 +26,7 @@ export class DoctorComponent implements OnInit {
     specialization: ""
   };
 
-  constructor(
-  ) {
+  constructor() {
   }
 
   ngOnInit() {

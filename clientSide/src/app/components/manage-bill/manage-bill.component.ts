@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Bill} from "../../models/Bill.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Staff} from "../../models/Staff.model";
 import {Patient} from "../../models/Patient.model";
 import {StaffService} from "../../services/staff.service";
 import {PatientService} from "../../services/patient.service";
@@ -11,7 +10,7 @@ import {PatientService} from "../../services/patient.service";
   templateUrl: './manage-bill.component.html',
   styleUrls: ['./manage-bill.component.scss']
 })
-export class ManageBillComponent implements OnInit, OnChanges{
+export class ManageBillComponent implements OnInit, OnChanges {
 
   title = '';
 
@@ -21,7 +20,7 @@ export class ManageBillComponent implements OnInit, OnChanges{
   bill: Bill = {
     status: 'UNPAID',
     patientId: "",
-    amount:0
+    amount: 0
   };
 
   @Input()
@@ -43,7 +42,7 @@ export class ManageBillComponent implements OnInit, OnChanges{
 
   constructor(
     private staffService: StaffService,
-    private patientService : PatientService,
+    private patientService: PatientService,
   ) {
     const today = new Date();
     this.minDate = today.toISOString().slice(0, 16);
@@ -54,9 +53,9 @@ export class ManageBillComponent implements OnInit, OnChanges{
     this.getAllPatients();
   }
 
-  getAllPatients(){
+  getAllPatients() {
     this.patientService.findAll().subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.patients = data;
       }
     })

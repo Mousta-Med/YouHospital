@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OperationComponent } from './operation.component';
+import {OperationComponent} from './operation.component';
 
 describe('OperationComponent', () => {
   let component: OperationComponent;

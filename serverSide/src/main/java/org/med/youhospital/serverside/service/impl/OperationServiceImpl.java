@@ -49,7 +49,7 @@ public class OperationServiceImpl implements OperationService {
     @Override
     public List<OperationRes> findAll() {
         return operationRepository.findAll().stream().map(operation -> {
-            OperationRes operationRes =  modelMapper.map(operation, OperationRes.class);
+            OperationRes operationRes = modelMapper.map(operation, OperationRes.class);
             operationRes.setPatientId(operation.getPatient().getId());
             operationRes.setStaffId(operation.getStaff().getId());
             return operationRes;
@@ -60,7 +60,7 @@ public class OperationServiceImpl implements OperationService {
     public OperationRes findOne(UUID id) {
         return operationRepository.findById(id)
                 .map(operation -> {
-                    OperationRes operationRes =  modelMapper.map(operation, OperationRes.class);
+                    OperationRes operationRes = modelMapper.map(operation, OperationRes.class);
                     operationRes.setPatientId(operation.getPatient().getId());
                     operationRes.setStaffId(operation.getStaff().getId());
                     return operationRes;

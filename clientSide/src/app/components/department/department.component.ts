@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Department} from "../../models/Department.model";
 import {DepartmentService} from "../../services/department.service";
 import {ConfirmationService, MessageService} from "primeng/api";
@@ -8,7 +8,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './department.component.html',
   styleUrls: ['./department.component.scss']
 })
-export class DepartmentComponent implements OnInit{
+export class DepartmentComponent implements OnInit {
 
   departments: Array<Department> = [];
 
@@ -22,9 +22,9 @@ export class DepartmentComponent implements OnInit{
     private departmentService: DepartmentService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-
   ) {
   }
+
   ngOnInit() {
     this.getAllDepartments();
   }
@@ -33,16 +33,6 @@ export class DepartmentComponent implements OnInit{
     this.sidebarVisible = true;
     this.operation = 'create';
     this.department = {name: '', hospitalId: ''};
-  }
-
-  private getAllDepartments() {
-    this.departmentService.findAll()
-      .subscribe({
-        next: (data) => {
-          this.departments = data;
-        }
-      })
-    ;
   }
 
   save(department: Department) {
@@ -105,6 +95,16 @@ export class DepartmentComponent implements OnInit{
 
   cancel() {
     this.sidebarVisible = false;
+  }
+
+  private getAllDepartments() {
+    this.departmentService.findAll()
+      .subscribe({
+        next: (data) => {
+          this.departments = data;
+        }
+      })
+    ;
   }
 
 }

@@ -17,11 +17,11 @@
     </a>
     <span class="p-input-icon-left"><i
       class="pi pi-search"></i>
-      <input [(ngModel)]="searchQuery" (input)="filterItems()" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
+      <input (input)="filterItems()" [(ngModel)]="searchQuery" class="p-inputtext p-component p-element border-none w-10rem sm:w-20rem" pinputtext="" placeholder="Search By Last Name"
              type="text"></span>
   </div>
   <div>
-    <p-button (click)="createPatient()" severity="success" size="small" label="Add" icon="pi pi-user-plus"></p-button>
+    <p-button (click)="createPatient()" icon="pi pi-user-plus" label="Add" severity="success" size="small"></p-button>
   </div>
 </div>
 <div class="lg:px-8 md:px-6 px-4 py-8 surface-ground ">
@@ -32,9 +32,9 @@
           <div class="flex border-bottom-1 surface-border pb-4">
             <img class="mr-3" src="assets/images/patient.png" style="width: 70px; height: 70px;">
             <div class="flex flex-column align-items-start">
-              <span class="text-xl text-900 font-medium mb-1">{{patient.firstName}} {{patient.lastName}}</span>
-              <span class="text-600 font-medium mb-2">{{patient.patientType}}</span>
-              <span class="bg-blue-50 text-blue-400 border-round inline-flex py-1 px-2 text-sm">{{patient.dateOfBirth}}</span>
+              <span class="text-xl text-900 font-medium mb-1">{{ patient.firstName }} {{ patient.lastName }}</span>
+              <span class="text-600 font-medium mb-2">{{ patient.patientType }}</span>
+              <span class="bg-blue-50 text-blue-400 border-round inline-flex py-1 px-2 text-sm">{{ patient.dateOfBirth }}</span>
             </div>
           </div>
           <div class="flex justify-content-between pt-4">

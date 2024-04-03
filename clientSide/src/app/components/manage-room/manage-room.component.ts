@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Hospital} from "../../models/Hospital.model";
 import {Room} from "../../models/Room.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Department} from "../../models/Department.model";
@@ -10,7 +9,7 @@ import {DepartmentService} from "../../services/department.service";
   templateUrl: './manage-room.component.html',
   styleUrls: ['./manage-room.component.scss']
 })
-export class ManageRoomComponent implements OnInit, OnChanges{
+export class ManageRoomComponent implements OnInit, OnChanges {
 
   departments: Department[] = [];
 

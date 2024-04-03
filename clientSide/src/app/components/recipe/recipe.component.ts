@@ -8,17 +8,18 @@ import {ConfirmationService, MessageService} from "primeng/api";
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent implements OnInit{
+export class RecipeComponent implements OnInit {
 
   recipes: Recipe[] = [];
 
-  recipe!: Recipe ;
+  recipe!: Recipe;
 
   recipeType: 'update' | 'create' = "create";
 
   title: string = '';
 
   visible: boolean = false;
+
   constructor(
     private recipeService: RecipeService,
     private messageService: MessageService,
@@ -105,14 +106,13 @@ export class RecipeComponent implements OnInit{
               this.messageService.add({
                 severity: 'success', summary: 'Recipe deleted', detail: `Recipe was successfully deleted`
               });
-            },error:(err) =>{
+            }, error: (err) => {
               console.log(err);
             }
           });
       }
     });
   }
-
 
 
   updateRecipe(updatedRecipe: Recipe) {

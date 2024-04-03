@@ -1,11 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Patient} from "../../models/Patient.model";
-import {Recipe} from "../../models/Recipe.model";
-import {Operation} from "../../models/Operation.model";
-import {Examination} from "../../models/Examination.model";
-import {OperationService} from "../../services/operation.service";
-import {RecipeService} from "../../services/recipe.service";
-import {ExaminationService} from "../../services/examination.service";
 
 @Component({
   selector: 'app-patient',
@@ -30,8 +24,7 @@ export class PatientComponent implements OnInit {
     roomId: ""
   };
 
-  constructor(
-  ) {
+  constructor() {
   }
 
   ngOnInit() {

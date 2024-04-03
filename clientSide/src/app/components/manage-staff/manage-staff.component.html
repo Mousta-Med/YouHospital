@@ -79,7 +79,7 @@
         <span class="p-input-icon-left w-full">
       <i class="pi pi-calendar"></i>
       <input class="p-inputtext p-component p-element w-full" formControlName="specialization"
-             type="text" placeholder="Enter Staff Specialization">
+             placeholder="Enter Staff Specialization" type="text">
       </span>
       </div>
       <div class="w-full">
@@ -104,14 +104,14 @@
       </div>
     </div>
     <div class="flex gap-3">
-      <div class="w-full" >
+      <div class="w-full">
         <label class="block mb-1 text-color text-base">Department</label>
         <span
           class="p-input-icon-left w-full">
           <i class="pi pi-file"></i>
           <select class="p-inputtext p-component p-element w-full" formControlName="departmentId">
             <option value="no">Select Option</option>
-            <option *ngFor="let department of departments" [value]="department?.id">{{department?.name}}</option>
+            <option *ngFor="let department of departments" [value]="department?.id">{{ department?.name }}</option>
           </select>
         </span>
       </div>
