@@ -6,10 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.med.youhospital.serverside.model.response.PersonRes;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 

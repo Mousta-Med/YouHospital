@@ -1,7 +1,6 @@
 package org.med.youhospital.serverside.service.impl;
 
 import org.med.youhospital.serverside.exception.ResourceNotFoundException;
-import org.med.youhospital.serverside.model.entity.Auditable;
 import org.med.youhospital.serverside.model.entity.Operation;
 import org.med.youhospital.serverside.model.entity.Patient;
 import org.med.youhospital.serverside.model.entity.Staff;

@@ -1,10 +1,12 @@
 package org.med.youhospital.serverside.service.impl;
 
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.med.youhospital.serverside.jwt.JWTUtil;
 import org.med.youhospital.serverside.model.entity.*;
-import org.med.youhospital.serverside.model.request.*;
+import org.med.youhospital.serverside.model.request.AuthenticationReq;
+import org.med.youhospital.serverside.model.request.ExaminationReq;
+import org.med.youhospital.serverside.model.request.OperationReq;
+import org.med.youhospital.serverside.model.request.PatientReq;
 import org.med.youhospital.serverside.model.response.*;
 import org.med.youhospital.serverside.repository.AdminRepository;
 import org.med.youhospital.serverside.repository.PatientRepository;
@@ -20,8 +22,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Service

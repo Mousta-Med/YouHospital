@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.med.youhospital.serverside.model.enums.StaffRole;
-import org.med.youhospital.serverside.model.response.PersonRes;
 
 import java.time.LocalDate;
 import java.util.UUID;
