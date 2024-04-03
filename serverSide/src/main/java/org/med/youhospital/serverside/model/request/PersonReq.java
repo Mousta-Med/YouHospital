@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.med.youhospital.serverside.model.enums.Gender;
 import org.med.youhospital.serverside.model.enums.IdentityType;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @MappedSuperclass
@@ -16,6 +18,7 @@ import org.med.youhospital.serverside.model.enums.IdentityType;
 @AllArgsConstructor
 public class PersonReq {
 
+    private UUID id;
 
     @NotBlank(message = "first name should be not blank")
     private String firstName;

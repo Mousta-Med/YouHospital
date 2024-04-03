@@ -14,9 +14,11 @@ export interface Operation extends Auditable{
 
   patientId: string;
 
-  staffsId: Array<string>;
+  staffId: string;
+
+  patientRes?: Patient;
 
   patient?: Patient;
 
-  staffs?: Array<Staff>;
+  staff?: Staff;
 }

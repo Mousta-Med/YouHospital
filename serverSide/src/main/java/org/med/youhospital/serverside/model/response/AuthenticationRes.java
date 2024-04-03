@@ -18,10 +18,10 @@ public class AuthenticationRes {
 
     private String role;
 
-    private Optional<StaffReq> staff;
+    private Optional<StaffRes> staff;
 
     private Optional<AdminRes> admin;
 
-    private Optional<PatientReq> patient;
+    private Optional<PatientRes> patient;
 
 }

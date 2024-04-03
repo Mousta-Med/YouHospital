@@ -43,12 +43,9 @@ public final class Staff extends Person {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Admin admin;
 
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Operation operation;
 
-//    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
-//    private List<Operation> operations;
+    @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
+    private List<Operation> operations;
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Recipe> recipes;

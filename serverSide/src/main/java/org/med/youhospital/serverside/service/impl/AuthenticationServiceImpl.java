@@ -1,18 +1,11 @@
 package org.med.youhospital.serverside.service.impl;
 
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.med.youhospital.serverside.jwt.JWTUtil;
-import org.med.youhospital.serverside.model.entity.Admin;
-import org.med.youhospital.serverside.model.entity.Patient;
-import org.med.youhospital.serverside.model.entity.Person;
-import org.med.youhospital.serverside.model.entity.Staff;
-import org.med.youhospital.serverside.model.request.AuthenticationReq;
-import org.med.youhospital.serverside.model.request.PatientReq;
-import org.med.youhospital.serverside.model.request.PersonReq;
-import org.med.youhospital.serverside.model.request.StaffReq;
-import org.med.youhospital.serverside.model.response.AdminRes;
-import org.med.youhospital.serverside.model.response.AuthenticationRes;
-import org.med.youhospital.serverside.model.response.PatientRes;
+import org.med.youhospital.serverside.model.entity.*;
+import org.med.youhospital.serverside.model.request.*;
+import org.med.youhospital.serverside.model.response.*;
 import org.med.youhospital.serverside.repository.AdminRepository;
 import org.med.youhospital.serverside.repository.PatientRepository;
 import org.med.youhospital.serverside.repository.StaffRepository;
@@ -25,7 +18,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -59,7 +54,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         patient.setPass(passwordEncoder.encode(patientReq.getPass()));
         patient = patientRepository.save(patient);
         String token = jwtUtil.generateToken(patient, "PATIENT");
-         return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(patientReq));
+         return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(new PatientRes()));
     }
 
     @Override
@@ -81,12 +76,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         if (patient.isPresent()) {
             token = jwtUtil.generateToken(patient.get(), "PATIENT");
-            return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientReq.class)));
+            return new AuthenticationRes(token, "PATIENT",Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientRes.class)));
         }
         if (staff.isPresent()) {
             token = jwtUtil.generateToken(staff.get(), staff.get().getRole().name());
-            return new AuthenticationRes(token, staff.get().getRole().name(),Optional.of(modelMapper.map(staff, StaffReq.class)),Optional.empty(),Optional.empty());
+            StaffRes staffRes = modelMapper.map(staff, StaffRes.class);
+            List<Examination> examinations = staff.get().getExaminations();
+            List<ExaminationReq> examinationsReq = staffRes.getExaminations();
+            List<Operation> operations = staff.get().getOperations();
+            List<OperationReq> operationsReq = staffRes.getOperations();
+            for (int i = 0; i < examinations.size(); i++) {
+                examinationsReq.get(i).setPatientRes(modelMapper.map(examinations.get(i).getPatient(), AuthPatientRes.class));
+            }
+            for (int i = 0; i < operations.size(); i++) {
+                operationsReq.get(i).setPatientRes(modelMapper.map(operations.get(i).getPatient(), AuthPatientRes.class));
+            }
+            staffRes.setExaminations(examinationsReq);
+            staffRes.setOperations(operationsReq);
+            return new AuthenticationRes(token, staff.get().getRole().name(),Optional.of(staffRes),Optional.empty(),Optional.empty());
         }
+
         throw new UsernameNotFoundException("User Not Found With This Email: " + authenticationReq.getEmail());
     }
 

@@ -22,7 +22,7 @@ export interface Staff extends Person {
 
   department?: Department;
 
-  operation?: Operation;
+  operations?: Array<Operation>;
 
   recipes?: Array<Recipe>;
 

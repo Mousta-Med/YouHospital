@@ -33,7 +33,7 @@ public class StaffRes extends PersonRes {
 
     private UUID departmentId;
 
-    private OperationReq operation;
+    private List<OperationReq> operations;
 
     private List<RecipeReq> recipes;
 

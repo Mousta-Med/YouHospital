@@ -12,6 +12,8 @@ export interface Examination extends Auditable{
 
     staffId: string;
 
+    patientRes?: Patient;
+
     patient?: Patient;
 
     staff?: Staff;

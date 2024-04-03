@@ -38,21 +38,12 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     public OperationRes save(OperationReq operationReq) {
-        Operation operation = modelMapper.map(operationReq, Operation.class);
         Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
+        Staff staff = staffRepository.findById(operationReq.getStaffId()).orElseThrow(() -> new ResourceNotFoundException("staff Not found"));
+        Operation operation = modelMapper.map(operationReq, Operation.class);
         operation.setPatient(patient);
-        Operation savedOperation = operationRepository.save(operation);
-        List<UUID> staffIds = operationReq.getStaffsId();
-
-        List<Staff> staffs = staffIds.stream()
-                .map(staffId -> staffRepository.findById(staffId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found with ID: " + staffId)))
-                .toList();
-        for (Staff staff: staffs){
-            staff.setOperation(savedOperation);
-            staffRepository.save(staff);
-        }
-        return modelMapper.map(savedOperation, OperationRes.class);
+        operation.setStaff(staff);
+        return modelMapper.map(operationRepository.save(operation), OperationRes.class);
     }
 
     @Override
@@ -60,10 +51,7 @@ public class OperationServiceImpl implements OperationService {
         return operationRepository.findAll().stream().map(operation -> {
             OperationRes operationRes =  modelMapper.map(operation, OperationRes.class);
             operationRes.setPatientId(operation.getPatient().getId());
-            List<UUID> staffsIds = operation.getStaffs().stream()
-                    .map(Auditable::getId)
-                    .toList();
-            operationRes.setStaffsId(staffsIds);
+            operationRes.setStaffId(operation.getStaff().getId());
             return operationRes;
         }).collect(Collectors.toList());
     }
@@ -74,40 +62,26 @@ public class OperationServiceImpl implements OperationService {
                 .map(operation -> {
                     OperationRes operationRes =  modelMapper.map(operation, OperationRes.class);
                     operationRes.setPatientId(operation.getPatient().getId());
-                    List<UUID> staffsIds = operation.getStaffs().stream()
-                            .map(Auditable::getId)
-                            .toList();
-                    operationRes.setStaffsId(staffsIds);
+                    operationRes.setStaffId(operation.getStaff().getId());
                     return operationRes;
                 }).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
     }
 
     @Override
     public OperationRes update(UUID id, OperationReq operationReq) {
-        Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
         Operation existingOperation = operationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
+        Patient patient = patientRepository.findById(operationReq.getPatientId()).orElseThrow(() -> new ResourceNotFoundException("patient Not found"));
+        Staff staff = staffRepository.findById(operationReq.getStaffId()).orElseThrow(() -> new ResourceNotFoundException("staff Not found"));
         BeanUtils.copyProperties(operationReq, existingOperation);
         existingOperation.setId(id);
         existingOperation.setPatient(patient);
-        List<UUID> staffIds = operationReq.getStaffsId();
-        List<Staff> staffs = staffIds.stream()
-                .map(staffId -> staffRepository.findById(staffId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Staff not found with ID: " + staffId)))
-                .toList();
-        for (Staff staff: staffs){
-            staff.setOperation(existingOperation);
-            staffRepository.save(staff);
-        }
+        existingOperation.setStaff(staff);
         return modelMapper.map(operationRepository.save(existingOperation), OperationRes.class);
     }
 
     @Override
     public void delete(UUID id) {
-        Operation existingOperation = operationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
-        for (Staff staff: existingOperation.getStaffs()){
-            staff.setOperation(null);
-            staffRepository.save(staff);
-        }
+        operationRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Operation Not found with this: " + id));
         operationRepository.deleteById(id);
     }
 

@@ -53,6 +53,7 @@ import {AvatarModule} from "primeng/avatar";
 import { ManageOperationComponent } from './components/manage-operation/manage-operation.component';
 import {MultiSelectModule} from "primeng/multiselect";
 import { ManageRecipeComponent } from './components/manage-recipe/manage-recipe.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ManageRecipeComponent } from './components/manage-recipe/manage-recipe.
     RecipeComponent,
     ManageOperationComponent,
     ManageRecipeComponent,
+    DoctorComponent,
 
   ],
     imports: [

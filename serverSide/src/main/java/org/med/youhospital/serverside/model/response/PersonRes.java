@@ -25,7 +25,7 @@ public class PersonRes extends AuditableRes {
 
     private String email;
 
-//    private String pass;
+    private String pass;
 
     private IdentityType identityType;
 

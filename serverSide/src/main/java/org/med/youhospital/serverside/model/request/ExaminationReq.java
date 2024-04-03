@@ -1,7 +1,5 @@
 package org.med.youhospital.serverside.model.request;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,11 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.med.youhospital.serverside.model.entity.Auditable;
-import org.med.youhospital.serverside.model.entity.Patient;
-import org.med.youhospital.serverside.model.entity.Staff;
+import org.med.youhospital.serverside.model.response.AuthPatientRes;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -36,4 +31,6 @@ public class ExaminationReq extends Auditable {
 
     @NotNull(message = "StaffId Should Not Be Null")
     private UUID staffId;
+
+    private AuthPatientRes patientRes;
 }

@@ -15,6 +15,7 @@ import {BillComponent} from "./components/bill/bill.component";
 import {ExaminationComponent} from "./components/examination/examination.component";
 import {OperationComponent} from "./components/operation/operation.component";
 import {RecipeComponent} from "./components/recipe/recipe.component";
+import {DoctorComponent} from "./components/doctor/doctor.component";
 
 const routes: Routes = [
   {
@@ -72,16 +73,16 @@ const routes: Routes = [
         canActivate: [IsRole], data: {role: 'NURSE'}
       },
       {
-        path: 'patient',
-        component: PatientComponent,
-        canActivate: [IsRole], data: {role: 'PATIENT'}
-      },
-      {
         path: 'doctor',
-        component: PatientComponent,
+        component: DoctorComponent,
         canActivate: [IsRole], data: {role: 'DOCTOR'}
       },
     ]
+  },
+  {
+    path: 'patient',
+    component: PatientComponent,
+    canActivate: [IsRole], data: {role: 'PATIENT'}
   },
   {
     path: "login",

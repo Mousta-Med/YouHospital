@@ -35,11 +35,8 @@ public class Operation extends Auditable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Patient patient;
 
-//    @ManyToOne
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    private Staff staff;
-
-    @OneToMany(mappedBy = "operation", fetch = FetchType.LAZY)
-    private List<Staff> staffs;
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Staff staff;
 
 }

@@ -34,6 +34,4 @@ public class StaffReq extends PersonReq {
 
     private UUID departmentId;
 
-    private UUID operationId;
-
 }

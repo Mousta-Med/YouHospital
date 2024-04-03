@@ -32,8 +32,8 @@ public class OperationRes extends AuditableRes {
 
     private UUID patientId;
 
-    private List<UUID> staffsId;
+    private UUID staffId;
 
-    private List<StaffReq> staffs;
+    private StaffReq staff;
 
 }
