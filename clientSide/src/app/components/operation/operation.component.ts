@@ -52,14 +52,14 @@ export class OperationComponent implements OnInit{
                 detail: 'Competition Created Successfully'
               });
               this.operation = {
-                cost: 0, date: "", duration: 0, patientId: "", staffsId: [], time: ""
+                cost: 0, date: "", duration: 0, patientId: "", staffId: "", time: ""
               };
             }, error: (err) => {
               console.log(err)
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: err.error?.error || err.error?.code
+                detail: err.error?.date || err.error?.time
               });
             }
           });
@@ -89,7 +89,7 @@ export class OperationComponent implements OnInit{
     this.operationType = 'create';
     this.visible = true;
     this.operation = {
-      cost: 0, date: "", duration: 0, patientId: "", staffsId: [], time: ""
+      cost: 0, date: "", duration: 0, patientId: "", staffId: "", time: ""
     };
   }
 

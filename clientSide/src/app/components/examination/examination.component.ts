@@ -64,6 +64,13 @@ export class ExaminationComponent implements  OnInit{
                 detail: 'Examination Created Successfully'
               });
               this.examination = {dateTime: "", patientId: "", problem: "", staffId: ''};
+            },
+            error: (err)=>{
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: err?.error.dateTime
+              });
             }
           });
       } else if (this.operation === 'update') {

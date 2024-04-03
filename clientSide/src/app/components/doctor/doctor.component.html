@@ -1,0 +1,130 @@
+<div class="min-h-screen flex flex-column relative flex-auto">
+  <div class="flex flex-column flex-auto">
+    <div class="surface-section p-4">
+      <div class="flex align-items-start flex-column lg:flex-row lg:justify-content-between">
+        <div class="flex align-items-start flex-column md:flex-row"><img
+          class="mr-5 mb-3 lg:mb-0" src="assets/images/doctor.jpg"
+          style="width: 90px; height: 90px;">
+          <div><span class="text-900 font-medium text-3xl">{{ doctor.firstName }} {{ doctor.lastName }}</span>
+            <p class="mt-0 mb-3 text-700 text-xl">{{ doctor.email }}</p>
+            <div class="text-600 font-medium">
+              <span>{{ doctor.phone }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 lg:mt-0">
+          <div class="text-cyan-600 text-7xl font-light text">Welcome Back.</div>
+        </div>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="grid">
+        <div class="col-12 lg:col-6 xl:col-3">
+          <div class="surface-card shadow-2 p-3 border-1 border-50 border-round">
+            <div class="flex justify-content-between mb-3">
+              <div><span class="block text-500 font-medium mb-3">Operations</span>
+                <div class="text-900 font-medium text-xl">{{ doctor?.operations?.length }}</div>
+              </div>
+              <div
+                class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                style="width: 2.5rem; height: 2.5rem;"><i
+                class="pi pi-cog text-blue-500 text-xl"></i></div>
+            </div>
+            <span *ngIf="doctor?.operations!.length >= 3"
+                  class="text-green-500 font-medium">{{ doctor?.operations!.length - 2 }} new </span><span
+            class="text-500">since last week</span>
+          </div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+          <div class="surface-card shadow-2 p-3 border-1 border-50 border-round">
+            <div class="flex justify-content-between mb-3">
+              <div><span class="block text-500 font-medium mb-3">Examinations</span>
+                <div class="text-900 font-medium text-xl">{{ doctor?.examinations?.length }}</div>
+              </div>
+              <div
+                class="flex align-items-center justify-content-center bg-orange-100 border-round"
+                style="width: 2.5rem; height: 2.5rem;"><i
+                class="pi pi-file-excel text-orange-500 text-xl"></i></div>
+            </div>
+            <span *ngIf="doctor?.examinations!.length >= 3"
+                  class="text-green-500 font-medium">{{ doctor?.examinations!.length - 2 }} </span><span
+            class="text-500">since last week</span></div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+          <div class="surface-card shadow-2 p-3 border-1 border-50 border-round">
+            <div class="flex justify-content-between mb-3">
+              <div><span class="block text-500 font-medium mb-3">Recipes</span>
+                <div class="text-900 font-medium text-xl">{{ doctor?.recipes?.length }}</div>
+              </div>
+              <div
+                class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+                style="width: 2.5rem; height: 2.5rem;"><i
+                class="pi pi-file-edit text-cyan-500 text-xl"></i></div>
+            </div>
+            <span *ngIf="doctor?.recipes!.length >= 3"
+                  class="text-green-500 font-medium">{{ doctor?.recipes!.length - 2 }} </span><span class="text-500">newly registered</span>
+          </div>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+          <div class="surface-card shadow-2 p-3 border-1 border-50 border-round">
+            <div class="flex justify-content-between mb-3">
+              <div><span class="block text-500 font-medium mb-3">Patients</span>
+                <div class="text-900 font-medium text-xl">{{ doctor?.operations?.length }}</div>
+              </div>
+              <div
+                class="flex align-items-center justify-content-center bg-purple-100 border-round"
+                style="width: 2.5rem; height: 2.5rem;"><i
+                class="pi pi-user text-purple-500 text-xl"></i></div>
+            </div>
+            <span *ngIf="doctor?.operations!.length > 2"
+                  class="text-green-500 font-medium">{{ doctor?.operations!.length - 2 }} </span><span class="text-500">operated</span>
+          </div>
+        </div>
+        <div class="col-12 xl:col-6">
+          <div class="surface-card shadow-2 border-round p-4">
+            <div class="flex justify-content-between align-items-center mb-5"><span
+              class="text-xl text-900 font-medium">Operations</span>
+            </div>
+            <div class="mt-3">
+              <p-table *ngIf="doctor.operations" [value]="doctor.operations" [tableStyle]="{ 'min-width': '40rem' }">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Patient</th>
+                    <th>Cost</th>
+                    <th>duration</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+                </ng-template>
+                <ng-template let-operation pTemplate="body">
+                  <tr>
+                    <td>{{ operation.patientRes.lastName }}</td>
+                    <td>{{ operation.cost }}</td>
+                    <td>{{ operation.duration }}</td>
+                    <td>{{ operation.date }}</td>
+                    <td>{{ operation.time }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 xl:col-6">
+          <div class="surface-card shadow-2 border-round p-4">
+            <div class="flex justify-content-between align-items-center mb-5"><span
+              class="text-xl text-900 font-medium">Examination</span>
+            </div>
+            <ul class="list-none p-0 m-0">
+              <li *ngFor="let examination of doctor.examinations" class="pb-3 border-bottom-1 surface-border">
+                <div class="font-medium text-900 mb-2">PROBLEM: {{examination.problem}}</div>
+                <div class="line-height-3 text-600" style="max-width: 30rem;">
+                  PATIENT: {{examination.patientRes?.firstName}} {{examination.patientRes?.lastName}} | {{examination.dateTime}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

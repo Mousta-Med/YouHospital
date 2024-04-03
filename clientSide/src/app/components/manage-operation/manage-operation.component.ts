@@ -16,13 +16,14 @@ export class ManageOperationComponent implements OnInit, OnChanges {
 
 
   patients: Patient[] = [];
+
   staffs: Staff[] = [];
 
   minDate = new Date();
 
   @Input()
   operation: Operation = {
-    cost: 0, date: "", duration: 0, patientId: "", staffsId: [], time: ""
+    cost: 0, date: "", duration: 0, patientId: "", staffId: "", time: ""
   };
 
   @Output()
@@ -31,15 +32,13 @@ export class ManageOperationComponent implements OnInit, OnChanges {
   @Output()
   cancel: EventEmitter<void> = new EventEmitter<void>();
 
-  adminId : string | undefined = '';
-
   operationForm: FormGroup = new FormGroup({
     date: new FormControl('', [Validators.required]),
     time: new FormControl('', [Validators.required]),
     duration: new FormControl(0, [Validators.required]),
     cost: new FormControl(0, [Validators.required]),
     patientId: new FormControl('no', [Validators.required, Validators.minLength(3)]),
-    staffsId: new FormControl([], [Validators.required]),
+    staffId: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -49,11 +48,6 @@ export class ManageOperationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      const authResponse: AuthenticationResponse = JSON.parse(storedUser);
-      this.adminId = authResponse.admin?.id;
-    }
     this.patientService.findAll().subscribe({
       next: (data) => {
         this.patients = data;
@@ -61,7 +55,7 @@ export class ManageOperationComponent implements OnInit, OnChanges {
     });
     this.staffService.findAll().subscribe({
       next: (data) => {
-        this.staffs = data.filter(item => item.role !== "RECEPTIONIST");
+        this.staffs = data.filter(item => item.role === "DOCTOR");
       }
     });
   }
@@ -75,7 +69,7 @@ export class ManageOperationComponent implements OnInit, OnChanges {
         duration: this.operation.duration,
         cost: this.operation.cost,
         patientId: this.operation.patientId,
-        staffsId:this.operation.staffsId,
+        staffId: this.operation.staffId,
       });
     }
   }

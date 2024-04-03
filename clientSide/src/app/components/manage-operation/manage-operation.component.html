@@ -7,7 +7,7 @@
           class="p-input-icon-left w-full">
           <i class="pi pi-user"></i>
           <input class="p-inputtext p-component p-element w-full" formControlName="date" id="name"
-                [min]="minDate" type="date">
+                [min]="minDate | date: 'yyyy-MM-dd'" type="date">
         </span>
       </div>
       <div class="w-full">
@@ -54,7 +54,7 @@
       </div>
       <div class="w-full" >
         <label class="block mb-1 text-color text-base">Staff</label>
-        <p-multiSelect appendTo="body" [options]="staffs" formControlName="staffsId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-multiSelect>
+        <p-dropdown styleClass="w-full" appendTo="body" [options]="staffs" formControlName="staffId" optionLabel="lastName" optionValue="id" placeholder="Select Staff"></p-dropdown>
       </div>
     </div>
   </div>

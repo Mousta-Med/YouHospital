@@ -1,22 +1,23 @@
 import {Component, OnInit} from '@angular/core';
+import {Staff} from "../../models/Staff.model";
+import {OperationService} from "../../services/operation.service";
+import {RecipeService} from "../../services/recipe.service";
+import {ExaminationService} from "../../services/examination.service";
 import {Patient} from "../../models/Patient.model";
 import {Recipe} from "../../models/Recipe.model";
 import {Operation} from "../../models/Operation.model";
 import {Examination} from "../../models/Examination.model";
-import {OperationService} from "../../services/operation.service";
-import {RecipeService} from "../../services/recipe.service";
-import {ExaminationService} from "../../services/examination.service";
 
 @Component({
-  selector: 'app-patient',
-  templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.scss']
+  selector: 'app-doctor',
+  templateUrl: './doctor.component.html',
+  styleUrls: ['./doctor.component.scss']
 })
-export class PatientComponent implements OnInit {
+export class DoctorComponent implements OnInit {
 
 
-  patient: Patient = {
-    dateOfBirth: "",
+  doctor: Staff = {
+    address: "",
     departmentId: "",
     email: "",
     firstName: "",
@@ -24,10 +25,12 @@ export class PatientComponent implements OnInit {
     identityCode: "",
     identityType: "PASSPORT",
     lastName: "",
+    operationId: "",
     pass: "",
-    patientType: "",
     phone: "",
-    roomId: ""
+    recruitmentDate: "",
+    role: "DOCTOR",
+    specialization: ""
   };
 
   constructor(
@@ -42,8 +45,8 @@ export class PatientComponent implements OnInit {
     const authenticatedUser = localStorage.getItem('user');
     if (authenticatedUser) {
       const authResponse = JSON.parse(authenticatedUser);
-      if (authResponse.patient) {
-        this.patient = authResponse.patient;
+      if (authResponse.staff) {
+        this.doctor = authResponse.staff;
       }
     }
   }
