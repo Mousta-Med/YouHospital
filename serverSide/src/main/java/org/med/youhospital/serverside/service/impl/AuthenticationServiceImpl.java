@@ -76,7 +76,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
         if (patient.isPresent()) {
             token = jwtUtil.generateToken(patient.get(), "PATIENT");
-            return new AuthenticationRes(token, "PATIENT", Optional.empty(), Optional.empty(), Optional.of(modelMapper.map(patient, PatientRes.class)));
+            PatientRes patientRes = modelMapper.map(patient, PatientRes.class);
+            List<OperationReq> operationsReq = patientRes.getOperations();
+            List<Operation> operations = patient.get().getOperations();
+            for (int i = 0; i < operations.size(); i++) {
+                operationsReq.get(i).setStaffRes(modelMapper.map(operations.get(i).getStaff(), PersonRes.class));
+            }
+            patientRes.setOperations(operationsReq);
+            return new AuthenticationRes(token, "PATIENT", Optional.empty(), Optional.empty(), Optional.of(patientRes));
         }
         if (staff.isPresent()) {
             token = jwtUtil.generateToken(staff.get(), staff.get().getRole().name());
@@ -86,10 +93,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             List<Operation> operations = staff.get().getOperations();
             List<OperationReq> operationsReq = staffRes.getOperations();
             for (int i = 0; i < examinations.size(); i++) {
-                examinationsReq.get(i).setPatientRes(modelMapper.map(examinations.get(i).getPatient(), AuthPatientRes.class));
+                examinationsReq.get(i).setPatientRes(modelMapper.map(examinations.get(i).getPatient(), PersonRes.class));
             }
             for (int i = 0; i < operations.size(); i++) {
-                operationsReq.get(i).setPatientRes(modelMapper.map(operations.get(i).getPatient(), AuthPatientRes.class));
+                operationsReq.get(i).setPatientRes(modelMapper.map(operations.get(i).getPatient(), PersonRes.class));
             }
             staffRes.setExaminations(examinationsReq);
             staffRes.setOperations(operationsReq);

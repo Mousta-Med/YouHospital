@@ -54,6 +54,7 @@ import {ManageOperationComponent} from './components/manage-operation/manage-ope
 import {MultiSelectModule} from "primeng/multiselect";
 import {ManageRecipeComponent} from './components/manage-recipe/manage-recipe.component';
 import {DoctorComponent} from './components/doctor/doctor.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -88,31 +89,32 @@ import {DoctorComponent} from './components/doctor/doctor.component';
     DoctorComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MenuModule,
-    ChartModule,
-    TableModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MessageModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    DialogModule,
-    ToastModule,
-    ConfirmDialogModule,
-    SidebarModule,
-    OverlayModule,
-    MessagesModule,
-    DropdownModule,
-    FileUploadModule,
-    TagModule,
-    AvatarModule,
-    MultiSelectModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MenuModule,
+        ChartModule,
+        TableModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MessageModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        DialogModule,
+        ToastModule,
+        ConfirmDialogModule,
+        SidebarModule,
+        OverlayModule,
+        MessagesModule,
+        DropdownModule,
+        FileUploadModule,
+        TagModule,
+        AvatarModule,
+        MultiSelectModule,
+        NgOptimizedImage,
+    ],
   providers: [
     MessageService,
     ConfirmationService,

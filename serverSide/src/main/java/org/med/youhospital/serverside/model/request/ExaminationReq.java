@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.med.youhospital.serverside.model.entity.Auditable;
-import org.med.youhospital.serverside.model.response.AuthPatientRes;
+import org.med.youhospital.serverside.model.response.PersonRes;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -32,5 +32,7 @@ public class ExaminationReq extends Auditable {
     @NotNull(message = "StaffId Should Not Be Null")
     private UUID staffId;
 
-    private AuthPatientRes patientRes;
+    private PersonRes patientRes;
+
+    private PersonRes staffRes;
 }

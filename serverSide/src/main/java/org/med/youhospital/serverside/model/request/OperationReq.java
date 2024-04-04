@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.med.youhospital.serverside.model.response.AuthPatientRes;
+import org.med.youhospital.serverside.model.response.PersonRes;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -40,6 +40,8 @@ public class OperationReq {
     @NotNull(message = "staff Id should be not null")
     private UUID staffId;
 
-    private AuthPatientRes patientRes;
+    private PersonRes patientRes;
+
+    private PersonRes staffRes;
 
 }

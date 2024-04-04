@@ -33,18 +33,18 @@ public abstract class BaseController<Request, Id, Response, Service extends Base
 
 
     @PostMapping
-    public ResponseEntity<Response> saveDepartment(@RequestBody @Valid Request userDto) {
+    public ResponseEntity<Response> save(@RequestBody @Valid Request userDto) {
         return ResponseEntity.ok(service.save(userDto));
     }
 
     @PutMapping("/{num}")
-    public ResponseEntity<Response> updateDepartment(@PathVariable Id num, @RequestBody @Valid Request userDto) {
+    public ResponseEntity<Response> update(@PathVariable Id num, @RequestBody @Valid Request userDto) {
         return ResponseEntity.ok(service.update(num, userDto));
     }
 
 
     @DeleteMapping("/{num}")
-    public ResponseEntity<Void> deleteDepartment(@PathVariable(name = "num") Id num) {
+    public ResponseEntity<Void> delete(@PathVariable(name = "num") Id num) {
         service.delete(num);
         return ResponseEntity.noContent().build();
     }

@@ -18,6 +18,8 @@ export interface Operation extends Auditable {
 
   patientRes?: Patient;
 
+  staffRes?: Staff;
+
   patient?: Patient;
 
   staff?: Staff;
